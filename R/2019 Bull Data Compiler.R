@@ -5,7 +5,8 @@ library(dplyr)
 
 
 #Bull 1
-
+Bull1JanMar19=read.csv("rawData/Bull1/Bull1JanMar19.txt", header=FALSE)
+Bull1JanMar19$V15=gsub("'","")
 Bull1Apr19 = read.csv("rawData/Bull1/Bull1Apr19.csv")
 Bull1May19 = read.csv("rawData/Bull1/Bull1May19.csv")
 Bull1Jun19 = read.csv("rawData/Bull1/Bull1Jun19.csv")
