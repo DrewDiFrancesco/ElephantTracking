@@ -1,9 +1,6 @@
 library(tidyverse)
 library(dplyr)
 
-#setwd("C:/RStudio/WorkingDirectory/ElephantTracking")
-
-
 #Bull 1
 Bull1JanMar19=read.csv("rawData/Bull1/Bull1JanMar19.txt", header=FALSE)
 Bull1JanMar19$V15=gsub("'","")
