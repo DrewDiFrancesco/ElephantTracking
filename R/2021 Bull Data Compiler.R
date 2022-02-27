@@ -1,31 +1,6 @@
 library(tidyverse)
 library(dplyr)
 
-#setwd("C:/RStudio/WorkingDirectory/ElephantTracking")
-
-
-# #Bull 1
-# Bull1Apr19 = read.csv("Bull1/Bull1Apr19.csv")
-# Bull1May19 = read.csv("Bull1/Bull1May19.csv")
-# Bull1Jun19 = read.csv("Bull1/Bull1Jun19.csv")
-# Bull1Jul19 = read.csv("Bull1/Bull1Jul19.csv")
-# Bull1Aug19 = read.csv("Bull1/Bull1Aug19.csv")
-# Bull1Oct19 = read.csv("Bull1/Bull1Oct19.csv")
-# Bull1Nov19 = read.csv("Bull1/Bull1Nov19.csv")
-# Bull1Dec19 = read.csv("Bull1/Bull1Dec19.csv")
-
-# #Combine all months
-# Bull1=rbind(Bull1May19[c(1,4,5)],Bull1Jun19[c(1,4,5)],Bull1Jul19[c(1,4,5)],Bull1Aug19[c(1,4,5)],Bull1Oct19[c(1,4,5)],Bull1Nov19[c(1,4,5)],Bull1Dec19[c(1,4,5)])
-# 
-# #Order in time
-# Bull1=Bull1[order(Bull1$?..Time),]
-# 
-# n=1:(nrow(Bull1)/4)*4
-# Bull1a=Bull1[n,]   #selecting only every 4 hours
-# 
-# Bull1a$doy <- as.numeric(strftime(Bull1a$?..Time, format = "%j"))   #creating variable to just put day of year (jan 1st = 1, jan 2nd = 2, etc...)
-
-
 #Bull 2
 Bull2Jan21 = read.csv("Bull2.1Jan21.csv")
 Bull2Feb21 = read.csv("Bull2.1Feb21.csv")

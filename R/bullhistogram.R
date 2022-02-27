@@ -10,3 +10,4 @@ bigbull$year <- substr(bigbull$Time, 0, 4)
 
 ggplot(bigbull, aes(x = BulNum, fill = year)) + geom_histogram(bins = 15, binwidth = .5) + xlab("Bull Number") + 
   ylab("") + ggtitle("Number of Tracking Data Points per Bull") 
+
