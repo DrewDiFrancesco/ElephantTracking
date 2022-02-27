@@ -252,3 +252,4 @@ Bull=Bull[order(Bull$ï..Time),]
 
 #write.csv(Bull,"BullData2019.csv")
 
+bull2019 <- read.csv("data/BullData2019.csv")
