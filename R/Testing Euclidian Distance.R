@@ -1,12 +1,12 @@
-BullData2021 <- read.csv("~/GitHub/ElephantTracking/data/BullData2021.csv")
+BullData2021 <- read.csv("data/BullData2021.csv")
 View(BullData2021)
-names(BullData2021)[names(BullData2021)=='ï..Time']='Time'
-BullData2020 <- read.csv("~/GitHub/ElephantTracking/data/BullData2020.csv")
+names(BullData2021)[names(BullData2021)=='?..Time']='Time'
+BullData2020 <- read.csv("data/BullData2020.csv")
 View(BullData2020)
-names(BullData2020)[names(BullData2020)=='ï..Time']='Time'
-BullData2019 <- read.csv("~/GitHub/ElephantTracking/data/BullData2019.csv")
+names(BullData2020)[names(BullData2020)=='?..Time']='Time'
+BullData2019 <- read.csv("data/BullData2019.csv")
 View(BullData2019)
-names(BullData2019)[names(BullData2019)=='ï..Time']='Time'
+names(BullData2019)[names(BullData2019)=='?..Time']='Time'
 
 
 
