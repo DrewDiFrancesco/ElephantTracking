@@ -1,12 +1,12 @@
-BullData2021 <- read.csv("data/BullData2021.csv")
+BullData2021 <- read.csv("~/GitHub/ElephantTracking/data/BullData2021.csv")
 View(BullData2021)
-names(BullData2021)[names(BullData2021)=='?..Time']='Time'
-BullData2020 <- read.csv("data/BullData2020.csv")
+names(BullData2021)[names(BullData2021)=='ï..Time']='Time'
+BullData2020 <- read.csv("~/GitHub/ElephantTracking/data/BullData2020.csv")
 View(BullData2020)
-names(BullData2020)[names(BullData2020)=='?..Time']='Time'
-BullData2019 <- read.csv("data/BullData2019.csv")
+names(BullData2020)[names(BullData2020)=='ï..Time']='Time'
+BullData2019 <- read.csv("~/GitHub/ElephantTracking/data/BullData2019.csv")
 View(BullData2019)
-names(BullData2019)[names(BullData2019)=='?..Time']='Time'
+names(BullData2019)[names(BullData2019)=='ï..Time']='Time'
 
 
 
@@ -674,21 +674,21 @@ for(j in 1:nrow(Bull15Dist)){
 }
 
 
-BullData$Date=as.POSIXct(BullData$Date,origin="1970-01-01")
-Bull1Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
-Bull2Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
-Bull3Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
-Bull4Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
-Bull5Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
-Bull6Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
-Bull7Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
-Bull8Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
-Bull9Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
-Bull10Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
-Bull12Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
-Bull13Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
-Bull14Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
-Bull15Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
+BullData$Date=as.Date(as.POSIXct(BullData$Date,origin="1970-01-01"))
+Bull1Dist[,1]=BullData$Date
+Bull2Dist[,1]=BullData$Date
+Bull3Dist[,1]=BullData$Date
+Bull4Dist[,1]=BullData$Date
+Bull5Dist[,1]=BullData$Date
+Bull6Dist[,1]=BullData$Date
+Bull7Dist[,1]=BullData$Date
+Bull8Dist[,1]=BullData$Date
+Bull9Dist[,1]=BullData$Date
+Bull10Dist[,1]=BullData$Date
+Bull12Dist[,1]=BullData$Date
+Bull13Dist[,1]=BullData$Date
+Bull14Dist[,1]=BullData$Date
+Bull15Dist[,1]=BullData$Date
 
 Names=c("Date","Distance_to_Bull_1","Distance_to_Bull_2","Distance_to_Bull_3","Distance_to_Bull_4","Distance_to_Bull_5","Distance_to_Bull_6","Distance_to_Bull_7","Distance_to_Bull_8","Distance_to_Bull_9","Distance_to_Bull_10","Distance_to_Bull_12","Distance_to_Bull_13","Distance_to_Bull_14","Distance_to_Bull_15","Distance_to_Zambezi_River","Distance_to_Victoria_Falls")
 colnames(Bull1Dist)=Names
@@ -706,19 +706,36 @@ colnames(Bull13Dist)=Names
 colnames(Bull14Dist)=Names
 colnames(Bull15Dist)=Names
 
-write.csv(BullData,"~/GitHub/ElephantTracking/data/BullData.csv")
+Bull1Dist=data.frame(Bull1Dist)
+Bull2Dist=data.frame(Bull2Dist)
+Bull3Dist=data.frame(Bull3Dist)
+Bull4Dist=data.frame(Bull4Dist)
+Bull5Dist=data.frame(Bull5Dist)
+Bull6Dist=data.frame(Bull6Dist)
+Bull7Dist=data.frame(Bull7Dist)
+Bull8Dist=data.frame(Bull8Dist)
+Bull9Dist=data.frame(Bull9Dist)
+Bull10Dist=data.frame(Bull10Dist)
+Bull12Dist=data.frame(Bull12Dist)
+Bull13Dist=data.frame(Bull13Dist)
+Bull14Dist=data.frame(Bull14Dist)
+Bull15Dist=data.frame(Bull15Dist)
 
-write.csv(Bull1Dist,"~/GitHub/ElephantTracking/data/Bull1Dist")
-write.csv(Bull2Dist,"~/GitHub/ElephantTracking/data/Bull2Dist")
-write.csv(Bull3Dist,"~/GitHub/ElephantTracking/data/Bull3Dist")
-write.csv(Bull4Dist,"~/GitHub/ElephantTracking/data/Bull4Dist")
-write.csv(Bull5Dist,"~/GitHub/ElephantTracking/data/Bull5Dist")
-write.csv(Bull6Dist,"~/GitHub/ElephantTracking/data/Bull6Dist")
-write.csv(Bull7Dist,"~/GitHub/ElephantTracking/data/Bull7Dist")
-write.csv(Bull8Dist,"~/GitHub/ElephantTracking/data/Bull8Dist")
-write.csv(Bull9Dist,"~/GitHub/ElephantTracking/data/Bull9Dist")
-write.csv(Bull10Dist,"~/GitHub/ElephantTracking/data/Bull10Dist")
-write.csv(Bull12Dist,"~/GitHub/ElephantTracking/data/Bull12Dist")
-write.csv(Bull13Dist,"~/GitHub/ElephantTracking/data/Bull13Dist")
-write.csv(Bull14Dist,"~/GitHub/ElephantTracking/data/Bull14Dist")
-write.csv(Bull15Dist,"~/GitHub/ElephantTracking/data/Bull15Dist")
+write.csv(BullData,"~/GitHub/ElephantTracking/data/BullData.csv")
+write.csv(Bull1Dist,"~/GitHub/ElephantTracking/data/Bull1Dist.csv")
+write.csv(Bull2Dist,"~/GitHub/ElephantTracking/data/Bull2Dist.csv")
+write.csv(Bull3Dist,"~/GitHub/ElephantTracking/data/Bull3Dist.csv")
+write.csv(Bull4Dist,"~/GitHub/ElephantTracking/data/Bull4Dist.csv")
+write.csv(Bull5Dist,"~/GitHub/ElephantTracking/data/Bull5Dist.csv")
+write.csv(Bull6Dist,"~/GitHub/ElephantTracking/data/Bull6Dist.csv")
+write.csv(Bull7Dist,"~/GitHub/ElephantTracking/data/Bull7Dist.csv")
+write.csv(Bull8Dist,"~/GitHub/ElephantTracking/data/Bull8Dist.csv")
+write.csv(Bull9Dist,"~/GitHub/ElephantTracking/data/Bull9Dist.csv")
+write.csv(Bull10Dist,"~/GitHub/ElephantTracking/data/Bull10Dist.csv")
+write.csv(Bull12Dist,"~/GitHub/ElephantTracking/data/Bull12Dist.csv")
+write.csv(Bull13Dist,"~/GitHub/ElephantTracking/data/Bull13Dist.csv")
+write.csv(Bull14Dist,"~/GitHub/ElephantTracking/data/Bull14Dist.csv")
+write.csv(Bull15Dist,"~/GitHub/ElephantTracking/data/Bull15Dist.csv")
+
+ts.plot(Bull1Dist$Distance_to_Bull_1)
+as.Date(BullData[,1])
