@@ -523,20 +523,202 @@ BullData=BullData[,c("Date","Lat1","Long1","Lat2","Long2","Lat3","Long3","Lat4",
 
 ########## Testing Distances
 
+# Zambezi River Distance
+VFZR=read.csv("~/GitHub/ElephantTracking/data/VictoriaFallsCity-ZambeziRiver.csv")
+ZambeziRiver=VFZR[c(1:77),c(2,3)]
+VictoriaFalls=VFZR[c(78:nrow(VFZR)),c(2,3)]
 
-Bull1Dist=matrix(NA,nrow=nrow(BullData),ncol=(ncol(BullData)-1)/2+1)
+
+Bull1Dist=matrix(NA,nrow=nrow(BullData),ncol=(ncol(BullData)-1)/2+3)
 Bull1Dist[,1]=BullData[,1]
 for(j in 1:nrow(Bull1Dist)){
-  for(i in 2:ncol(Bull1Dist)){
-    Bull1Dist[j,i]=sqrt((BullData[j,2]-BullData[j,2*(i-1)])^2+(BullData[j,3]-BullData[j,2*(i-1)+1])^2)
+  for(i in 2:(ncol(Bull1Dist)-2)){
+    Bull1Dist[j,i]=sqrt((111.319*(BullData[j,2]-BullData[j,2*(i-1)]))^2+(96.405*(BullData[j,3]-BullData[j,2*(i-1)+1]))^2)
   }
+  Bull1Dist[j,ncol(Bull1Dist)-1]=min(sqrt((111.319*(BullData[j,2]-ZambeziRiver[,1]))^2+(96.405*(BullData[j,3]-ZambeziRiver[,2]))^2))
+  Bull1Dist[j,ncol(Bull1Dist)]=min(sqrt((111.319*(BullData[j,2]-VictoriaFalls[,1]))^2+(96.405*(BullData[j,3]-VictoriaFalls[,2]))^2))
 }
 
-Bull1Dist=matrix(NA,nrow=nrow(BullData),ncol=(ncol(BullData)-1)/2+1)
-Bull1Dist[,1]=BullData[,1]
-for(j in 1:nrow(Bull1Dist)){
-  for(i in 2:ncol(Bull1Dist)){
-    Bull1Dist[j,i]=sqrt((BullData[j,2]-BullData[j,2*(i-1)])^2+(BullData[j,3]-BullData[j,2*(i-1)+1])^2)
+Bull2Dist=matrix(NA,nrow=nrow(BullData),ncol=(ncol(BullData)-1)/2+3)
+Bull2Dist[,1]=BullData[,1]
+for(j in 1:nrow(Bull2Dist)){
+  for(i in 2:(ncol(Bull2Dist)-2)){
+    Bull2Dist[j,i]=sqrt((111.319*(BullData[j,4]-BullData[j,2*(i-1)]))^2+(96.405*(BullData[j,5]-BullData[j,2*(i-1)+1]))^2)
   }
+  Bull2Dist[j,ncol(Bull2Dist)-1]=min(sqrt((111.319*(BullData[j,4]-ZambeziRiver[,1]))^2+(96.405*(BullData[j,5]-ZambeziRiver[,2]))^2))
+  Bull2Dist[j,ncol(Bull2Dist)]=min(sqrt((111.319*(BullData[j,4]-VictoriaFalls[,1]))^2+(96.405*(BullData[j,5]-VictoriaFalls[,2]))^2))
+  
 }
 
+Bull3Dist=matrix(NA,nrow=nrow(BullData),ncol=(ncol(BullData)-1)/2+3)
+Bull3Dist[,1]=BullData[,1]
+for(j in 1:nrow(Bull3Dist)){
+  for(i in 2:(ncol(Bull3Dist)-2)){
+    Bull3Dist[j,i]=sqrt((111.319*(BullData[j,6]-BullData[j,2*(i-1)]))^2+(96.405*(BullData[j,7]-BullData[j,2*(i-1)+1]))^2)
+  }
+  Bull3Dist[j,ncol(Bull3Dist)-1]=min(sqrt((111.319*(BullData[j,6]-ZambeziRiver[,1]))^2+(96.405*(BullData[j,7]-ZambeziRiver[,2]))^2))
+  Bull3Dist[j,ncol(Bull3Dist)]=min(sqrt((BullData[j,6]-VictoriaFalls[,1])^2+(BullData[j,7]-VictoriaFalls[,2])^2))
+  
+}
+
+Bull4Dist=matrix(NA,nrow=nrow(BullData),ncol=(ncol(BullData)-1)/2+3)
+Bull4Dist[,1]=BullData[,1]
+for(j in 1:nrow(Bull4Dist)){
+  for(i in 2:(ncol(Bull4Dist)-2)){
+    Bull4Dist[j,i]=sqrt((111.319*(BullData[j,8]-BullData[j,2*(i-1)]))^2+(96.405*(BullData[j,9]-BullData[j,2*(i-1)+1]))^2)
+  }
+  Bull4Dist[j,ncol(Bull4Dist)-1]=min(sqrt((111.319*(BullData[j,8]-ZambeziRiver[,1]))^2+(96.405*(BullData[j,9]-ZambeziRiver[,2]))^2))
+  Bull4Dist[j,ncol(Bull4Dist)]=min(sqrt((111.319*(BullData[j,8]-VictoriaFalls[,1]))^2+(96.405*(BullData[j,9]-VictoriaFalls[,2]))^2))
+  
+}
+
+Bull5Dist=matrix(NA,nrow=nrow(BullData),ncol=(ncol(BullData)-1)/2+3)
+Bull5Dist[,1]=BullData[,1]
+for(j in 1:nrow(Bull5Dist)){
+  for(i in 2:(ncol(Bull5Dist)-2)){
+    Bull5Dist[j,i]=sqrt((111.319*(BullData[j,10]-BullData[j,2*(i-1)]))^2+(96.405*(BullData[j,11]-BullData[j,2*(i-1)+1]))^2)
+  }
+  Bull5Dist[j,ncol(Bull5Dist)-1]=min(sqrt((111.319*(BullData[j,10]-ZambeziRiver[,1]))^2+(96.405*(BullData[j,11]-ZambeziRiver[,2]))^2))
+  Bull5Dist[j,ncol(Bull5Dist)]=min(sqrt((111.319*(BullData[j,10]-VictoriaFalls[,1]))^2+(96.405*(BullData[j,11]-VictoriaFalls[,2]))^2))
+}
+
+Bull6Dist=matrix(NA,nrow=nrow(BullData),ncol=(ncol(BullData)-1)/2+3)
+Bull6Dist[,1]=BullData[,1]
+for(j in 1:nrow(Bull6Dist)){
+  for(i in 2:(ncol(Bull6Dist)-2)){
+    Bull6Dist[j,i]=sqrt((111.319*(BullData[j,12]-BullData[j,2*(i-1)]))^2+(96.405*(BullData[j,13]-BullData[j,2*(i-1)+1]))^2)
+  }
+  Bull6Dist[j,ncol(Bull6Dist)-1]=min(sqrt((111.319*(BullData[j,12]-ZambeziRiver[,1]))^2+(96.405*(BullData[j,13]-ZambeziRiver[,2]))^2))
+  Bull6Dist[j,ncol(Bull6Dist)]=min(sqrt((111.319*(BullData[j,12]-VictoriaFalls[,1]))^2+(96.405*(BullData[j,13]-VictoriaFalls[,2]))^2))
+  
+}
+
+Bull7Dist=matrix(NA,nrow=nrow(BullData),ncol=(ncol(BullData)-1)/2+3)
+Bull7Dist[,1]=BullData[,1]
+for(j in 1:nrow(Bull7Dist)){
+  for(i in 2:(ncol(Bull7Dist)-2)){
+    Bull7Dist[j,i]=sqrt((111.319*(BullData[j,14]-BullData[j,2*(i-1)]))^2+(96.405*(BullData[j,15]-BullData[j,2*(i-1)+1]))^2)
+  }
+  Bull7Dist[j,ncol(Bull7Dist)-1]=min(sqrt((111.319*(BullData[j,14]-ZambeziRiver[,1]))^2+(96.405*(BullData[j,15]-ZambeziRiver[,2]))^2))
+  Bull7Dist[j,ncol(Bull7Dist)]=min(sqrt((111.319*(BullData[j,14]-VictoriaFalls[,1]))^2+(96.405*(BullData[j,15]-VictoriaFalls[,2]))^2))
+}
+
+Bull8Dist=matrix(NA,nrow=nrow(BullData),ncol=(ncol(BullData)-1)/2+3)
+Bull8Dist[,1]=BullData[,1]
+for(j in 1:nrow(Bull8Dist)){
+  for(i in 2:(ncol(Bull8Dist)-2)){
+    Bull8Dist[j,i]=sqrt((111.319*(BullData[j,16]-BullData[j,2*(i-1)]))^2+(96.405*(BullData[j,17]-BullData[j,2*(i-1)+1]))^2)
+  }
+  Bull8Dist[j,ncol(Bull8Dist)-1]=min(sqrt((111.319*(BullData[j,16]-ZambeziRiver[,1]))^2+(96.405*(BullData[j,17]-ZambeziRiver[,2]))^2))
+  Bull8Dist[j,ncol(Bull8Dist)]=min(sqrt((111.319*(BullData[j,16]-VictoriaFalls[,1]))^2+(96.405*(BullData[j,17]-VictoriaFalls[,2]))^2))
+}
+
+Bull9Dist=matrix(NA,nrow=nrow(BullData),ncol=(ncol(BullData)-1)/2+3)
+Bull9Dist[,1]=BullData[,1]
+for(j in 1:nrow(Bull9Dist)){
+  for(i in 2:(ncol(Bull9Dist)-2)){
+    Bull9Dist[j,i]=sqrt((111.319*(BullData[j,18]-BullData[j,2*(i-1)]))^2+(96.405*(BullData[j,19]-BullData[j,2*(i-1)+1]))^2)
+  }
+  Bull9Dist[j,ncol(Bull9Dist)-1]=min(sqrt((111.319*(BullData[j,18]-ZambeziRiver[,1]))^2+(96.405*(BullData[j,19]-ZambeziRiver[,2]))^2))
+  Bull9Dist[j,ncol(Bull9Dist)]=min(sqrt((111.319*(BullData[j,18]-VictoriaFalls[,1]))^2+(96.405*(BullData[j,19]-VictoriaFalls[,2]))^2))
+}
+
+Bull10Dist=matrix(NA,nrow=nrow(BullData),ncol=(ncol(BullData)-1)/2+3)
+Bull10Dist[,1]=BullData[,1]
+for(j in 1:nrow(Bull10Dist)){
+  for(i in 2:(ncol(Bull10Dist)-2)){
+    Bull10Dist[j,i]=sqrt((111.319*(BullData[j,20]-BullData[j,2*(i-1)]))^2+(96.405*(BullData[j,21]-BullData[j,2*(i-1)+1]))^2)
+  }
+  Bull10Dist[j,ncol(Bull10Dist)-1]=min(sqrt((111.319*(BullData[j,20]-ZambeziRiver[,1]))^2+(96.405*(BullData[j,21]-ZambeziRiver[,2]))^2))
+  Bull10Dist[j,ncol(Bull10Dist)]=min(sqrt((111.319*(BullData[j,20]-VictoriaFalls[,1]))^2+(96.405*(BullData[j,21]-VictoriaFalls[,2]))^2))
+}
+
+Bull12Dist=matrix(NA,nrow=nrow(BullData),ncol=(ncol(BullData)-1)/2+3)
+Bull12Dist[,1]=BullData[,1]
+for(j in 1:nrow(Bull12Dist)){
+  for(i in 2:(ncol(Bull12Dist)-2)){
+    Bull12Dist[j,i]=sqrt((111.319*(BullData[j,22]-BullData[j,2*(i-1)]))^2+(96.405*(BullData[j,23]-BullData[j,2*(i-1)+1]))^2)
+  }
+  Bull12Dist[j,ncol(Bull12Dist)-1]=min(sqrt((111.319*(BullData[j,22]-ZambeziRiver[,1]))^2+(96.405*(BullData[j,23]-ZambeziRiver[,2]))^2))
+  Bull12Dist[j,ncol(Bull12Dist)]=min(sqrt((111.319*(BullData[j,22]-VictoriaFalls[,1]))^2+(96.405*(BullData[j,23]-VictoriaFalls[,2]))^2))
+}
+
+Bull13Dist=matrix(NA,nrow=nrow(BullData),ncol=(ncol(BullData)-1)/2+3)
+Bull13Dist[,1]=BullData[,1]
+for(j in 1:nrow(Bull13Dist)){
+  for(i in 2:(ncol(Bull13Dist)-2)){
+    Bull13Dist[j,i]=sqrt((111.319*(BullData[j,24]-BullData[j,2*(i-1)]))^2+(96.405*(BullData[j,25]-BullData[j,2*(i-1)+1]))^2)
+  }
+  Bull13Dist[j,ncol(Bull13Dist)-1]=min(sqrt((111.319*(BullData[j,24]-ZambeziRiver[,1]))^2+(96.405*(BullData[j,25]-ZambeziRiver[,2]))^2))
+  Bull13Dist[j,ncol(Bull13Dist)]=min(sqrt((111.319*(BullData[j,24]-VictoriaFalls[,1]))^2+(96.405*(BullData[j,25]-VictoriaFalls[,2]))^2))
+}
+
+Bull14Dist=matrix(NA,nrow=nrow(BullData),ncol=(ncol(BullData)-1)/2+3)
+Bull14Dist[,1]=BullData[,1]
+for(j in 1:nrow(Bull14Dist)){
+  for(i in 2:(ncol(Bull14Dist)-2)){
+    Bull14Dist[j,i]=sqrt((111.319*(BullData[j,26]-BullData[j,2*(i-1)]))^2+(96.405*(BullData[j,27]-BullData[j,2*(i-1)+1]))^2)
+  }
+  Bull14Dist[j,ncol(Bull14Dist)-1]=min(sqrt((111.319*(BullData[j,26]-ZambeziRiver[,1]))^2+(96.405*(BullData[j,27]-ZambeziRiver[,2]))^2))
+  Bull14Dist[j,ncol(Bull14Dist)]=min(sqrt((111.319*(BullData[j,26]-VictoriaFalls[,1]))^2+(96.405*(BullData[j,27]-VictoriaFalls[,2]))^2))
+}
+
+Bull15Dist=matrix(NA,nrow=nrow(BullData),ncol=(ncol(BullData)-1)/2+3)
+Bull15Dist[,1]=BullData[,1]
+for(j in 1:nrow(Bull15Dist)){
+  for(i in 2:(ncol(Bull15Dist)-2)){
+    Bull15Dist[j,i]=sqrt((111.319*(BullData[j,28]-BullData[j,2*(i-1)]))^2+(96.405*(BullData[j,29]-BullData[j,2*(i-1)+1]))^2)
+  }
+  Bull15Dist[j,ncol(Bull15Dist)-1]=min(sqrt((111.319*(BullData[j,28]-ZambeziRiver[,1]))^2+(96.405*(BullData[j,29]-ZambeziRiver[,2]))^2))
+  Bull15Dist[j,ncol(Bull15Dist)]=min(sqrt((111.319*(BullData[j,28]-VictoriaFalls[,1]))^2+(96.405*(BullData[j,29]-VictoriaFalls[,2]))^2))
+}
+
+
+BullData$Date=as.POSIXct(BullData$Date,origin="1970-01-01")
+Bull1Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
+Bull2Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
+Bull3Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
+Bull4Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
+Bull5Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
+Bull6Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
+Bull7Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
+Bull8Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
+Bull9Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
+Bull10Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
+Bull12Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
+Bull13Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
+Bull14Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
+Bull15Dist[,1]=as.character(as.POSIXct(BullData$Date,origin="1970-01-01"))
+
+Names=c("Date","Distance_to_Bull_1","Distance_to_Bull_2","Distance_to_Bull_3","Distance_to_Bull_4","Distance_to_Bull_5","Distance_to_Bull_6","Distance_to_Bull_7","Distance_to_Bull_8","Distance_to_Bull_9","Distance_to_Bull_10","Distance_to_Bull_12","Distance_to_Bull_13","Distance_to_Bull_14","Distance_to_Bull_15","Distance_to_Zambezi_River","Distance_to_Victoria_Falls")
+colnames(Bull1Dist)=Names
+colnames(Bull2Dist)=Names
+colnames(Bull3Dist)=Names
+colnames(Bull4Dist)=Names
+colnames(Bull5Dist)=Names
+colnames(Bull6Dist)=Names
+colnames(Bull7Dist)=Names
+colnames(Bull8Dist)=Names
+colnames(Bull9Dist)=Names
+colnames(Bull10Dist)=Names
+colnames(Bull12Dist)=Names
+colnames(Bull13Dist)=Names
+colnames(Bull14Dist)=Names
+colnames(Bull15Dist)=Names
+
+write.csv(BullData,"~/GitHub/ElephantTracking/data/BullData.csv")
+
+write.csv(Bull1Dist,"~/GitHub/ElephantTracking/data/Bull1Dist")
+write.csv(Bull2Dist,"~/GitHub/ElephantTracking/data/Bull2Dist")
+write.csv(Bull3Dist,"~/GitHub/ElephantTracking/data/Bull3Dist")
+write.csv(Bull4Dist,"~/GitHub/ElephantTracking/data/Bull4Dist")
+write.csv(Bull5Dist,"~/GitHub/ElephantTracking/data/Bull5Dist")
+write.csv(Bull6Dist,"~/GitHub/ElephantTracking/data/Bull6Dist")
+write.csv(Bull7Dist,"~/GitHub/ElephantTracking/data/Bull7Dist")
+write.csv(Bull8Dist,"~/GitHub/ElephantTracking/data/Bull8Dist")
+write.csv(Bull9Dist,"~/GitHub/ElephantTracking/data/Bull9Dist")
+write.csv(Bull10Dist,"~/GitHub/ElephantTracking/data/Bull10Dist")
+write.csv(Bull12Dist,"~/GitHub/ElephantTracking/data/Bull12Dist")
+write.csv(Bull13Dist,"~/GitHub/ElephantTracking/data/Bull13Dist")
+write.csv(Bull14Dist,"~/GitHub/ElephantTracking/data/Bull14Dist")
+write.csv(Bull15Dist,"~/GitHub/ElephantTracking/data/Bull15Dist")
