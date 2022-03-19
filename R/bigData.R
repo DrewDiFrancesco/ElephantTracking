@@ -16,21 +16,36 @@ d14 <- read.csv('data/Bull14Dist.csv') %>% mutate(bulnum = 14)
 d15 <- read.csv('data/Bull15Dist.csv') %>% mutate(bulnum = 15)
 
 VFZR=read.csv("data/VictoriaFallsCity-ZambeziRiver.csv")
-ZambeziRiver=VFZR[c(1:77),c(2,3)]
-VictoriaFalls=VFZR[c(78:nrow(VFZR)),c(2,3)]
+
+VictoriaFalls=VFZR[c(1:77),c(2,3)]
+ZambeziRiver=VFZR[c(78:nrow(VFZR)),c(2,3)]
 
 data <- d1 %>% full_join(d2) %>% full_join(d3) %>% full_join(d4) %>% full_join(d5) %>% full_join(d6) %>% full_join(d7) %>% full_join(d8) %>% full_join(d9) %>% 
-  full_join(d10) %>% full_join(d12) %>% full_join(d13) %>% full_join(d14) %>% full_join(d15) 
-data$isinCity <- NA
+  full_join(d10) %>% full_join(d12) %>% full_join(d13) %>% full_join(d14) %>% full_join(d15) %>% group_by(bulnum)
+data$isinCity <- ifelse(data$Distance_to_Victoria_Falls <= 5, 1, 0) 
 
-for(i in 1:length(data)) {
-  if (data$Distance_to_Victoria_Falls[i] <= 5) {
-    data$isinCity[i] = 1
-  }
-  else if (data$Distance_to_Victoria_Falls[i] > 5) {
-    data$isinCity[i] = 0
-  }
-  else if (is.na(data$Distance_to_Victoria_Falls[i])) {
-    data$isinCity[i] = 0
-  }
-}
+which(data$isinCity == 1)
+
+max(data$Distance_to_Victoria_Falls[(which(data$isinCity == 1)-1)])
+
+#max(data$Distance_to_Victoria_Falls[(which(data$isinCity == 1)-1])
+# africa = world %>% 
+#   filter(continent == "Africa", !is.na(iso_a2)) %>% 
+#   left_join(worldbank_df, by = "iso_a2") %>% 
+#   dplyr::select(name, subregion, gdpPercap, HDI, pop_growth) %>% 
+#   st_transform("+proj=aea +lat_1=20 +lat_2=-23 +lat_0=0 +lon_0=25")
+
+data(wrld_simpl)
+afr=wrld_simpl[wrld_simpl$REGION==2,]
+
+plot(afr[afr$NAME == 'Zimbabwe',])
+points(VictoriaFalls$LONGITUDE,VictoriaFalls$LATITUDE,col='red')
+points(ZambeziRiver$LONGITUDE,ZambeziRiver$LATITUDE,col='blue')
+
+ggplot() + 
+  ggmap(zim[,1:2])
+
+zim = map_data(map='world',region='Zimbabwe')
+
+mapzim <- get_map(location = c(lon = mean(zim$long), lat = mean(zim$lat)), zoom = 4,
+                      maptype = "terrain", scale = 2)
