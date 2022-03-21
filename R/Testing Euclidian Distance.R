@@ -1,11 +1,11 @@
 BullData2021 <- read.csv("data/BullData2021.csv")
-View(BullData2021)
+# View(BullData2021)
 names(BullData2021)[names(BullData2021)=='?..Time']='Time'
 BullData2020 <- read.csv("data/BullData2020.csv")
-View(BullData2020)
+# View(BullData2020)
 names(BullData2020)[names(BullData2020)=='?..Time']='Time'
 BullData2019 <- read.csv("data/BullData2019.csv")
-View(BullData2019)
+# View(BullData2019)
 names(BullData2019)[names(BullData2019)=='?..Time']='Time'
 
 
@@ -312,7 +312,7 @@ NewBull_2020=merge(NewBull12567891213_2020,NewBull14_2020,by="Date",all=T)
 
 NewBull_2020_2021=merge(NewBull_2020,NewBullData_2021,all=T)
 
-View(NewBull_2020_2021)
+# View(NewBull_2020_2021)
 
 
 
@@ -516,7 +516,7 @@ NewBull_2019=merge(NewBull123456789101213_2019,NewBull14_2019,by="Date",all=T)
 
 BullData=merge(NewBull_2020_2021,NewBull_2019,all=T)
 
-View(BullData)
+# View(BullData)
 
 BullData=BullData[,c("Date","Lat1","Long1","Lat2","Long2","Lat3","Long3","Lat4","Long4","Lat5","Long5","Lat6","Long6","Lat7","Long7","Lat8","Long8","Lat9","Long9","Lat10","Long10","Lat12","Long12","Lat13","Long13","Lat14","Long14","Lat15","Long15")]
 
@@ -524,9 +524,9 @@ BullData=BullData[,c("Date","Lat1","Long1","Lat2","Long2","Lat3","Long3","Lat4",
 ########## Testing Distances
 
 # Zambezi River Distance
-VFZR=read.csv("~/GitHub/ElephantTracking/data/VictoriaFallsCity-ZambeziRiver.csv")
-ZambeziRiver=VFZR[c(1:77),c(2,3)]
-VictoriaFalls=VFZR[c(78:nrow(VFZR)),c(2,3)]
+VFZR=read.csv("data/VictoriaFallsCity-ZambeziRiver.csv")
+ZambeziRiver=VFZR[c(78:nrow(VFZR)),c(2,3)]
+VictoriaFalls=VFZR[c(1:77),c(2,3)]
 
 
 Bull1Dist=matrix(NA,nrow=nrow(BullData),ncol=(ncol(BullData)-1)/2+3)
@@ -721,21 +721,21 @@ Bull13Dist=data.frame(Bull13Dist)
 Bull14Dist=data.frame(Bull14Dist)
 Bull15Dist=data.frame(Bull15Dist)
 
-write.csv(BullData,"~/GitHub/ElephantTracking/data/BullData.csv")
-write.csv(Bull1Dist,"~/GitHub/ElephantTracking/data/Bull1Dist.csv")
-write.csv(Bull2Dist,"~/GitHub/ElephantTracking/data/Bull2Dist.csv")
-write.csv(Bull3Dist,"~/GitHub/ElephantTracking/data/Bull3Dist.csv")
-write.csv(Bull4Dist,"~/GitHub/ElephantTracking/data/Bull4Dist.csv")
-write.csv(Bull5Dist,"~/GitHub/ElephantTracking/data/Bull5Dist.csv")
-write.csv(Bull6Dist,"~/GitHub/ElephantTracking/data/Bull6Dist.csv")
-write.csv(Bull7Dist,"~/GitHub/ElephantTracking/data/Bull7Dist.csv")
-write.csv(Bull8Dist,"~/GitHub/ElephantTracking/data/Bull8Dist.csv")
-write.csv(Bull9Dist,"~/GitHub/ElephantTracking/data/Bull9Dist.csv")
-write.csv(Bull10Dist,"~/GitHub/ElephantTracking/data/Bull10Dist.csv")
-write.csv(Bull12Dist,"~/GitHub/ElephantTracking/data/Bull12Dist.csv")
-write.csv(Bull13Dist,"~/GitHub/ElephantTracking/data/Bull13Dist.csv")
-write.csv(Bull14Dist,"~/GitHub/ElephantTracking/data/Bull14Dist.csv")
-write.csv(Bull15Dist,"~/GitHub/ElephantTracking/data/Bull15Dist.csv")
+write.csv(BullData,"data/BullData.csv")
+write.csv(Bull1Dist,"data/Bull1Dist.csv")
+write.csv(Bull2Dist,"data/Bull2Dist.csv")
+write.csv(Bull3Dist,"data/Bull3Dist.csv")
+write.csv(Bull4Dist,"data/Bull4Dist.csv")
+write.csv(Bull5Dist,"data/Bull5Dist.csv")
+write.csv(Bull6Dist,"data/Bull6Dist.csv")
+write.csv(Bull7Dist,"data/Bull7Dist.csv")
+write.csv(Bull8Dist,"data/Bull8Dist.csv")
+write.csv(Bull9Dist,"data/Bull9Dist.csv")
+write.csv(Bull10Dist,"data/Bull10Dist.csv")
+write.csv(Bull12Dist,"data/Bull12Dist.csv")
+write.csv(Bull13Dist,"data/Bull13Dist.csv")
+write.csv(Bull14Dist,"data/Bull14Dist.csv")
+write.csv(Bull15Dist,"data/Bull15Dist.csv")
 
 ts.plot(Bull1Dist$Distance_to_Bull_1)
 as.Date(BullData[,1])

@@ -41,7 +41,7 @@ stateNames <- c("encamped","exploratory")
 dist = list(step = "gamma", angle = "wrpcauchy")
 
 # initial parameters
-Par0_m1 <- list(step=c(100,500,1000,200),angle=c(0.3,0.7))
+Par0_m1 <- list(step=c(100,3000,300,1500,0,1),angle=c(0.3,0.7))
 
 # fit model
 m1 <- fitHMM(data = elephantData, nbStates = 2, dist = dist, Par0 = Par0_m1,
@@ -50,3 +50,9 @@ m1 <- fitHMM(data = elephantData, nbStates = 2, dist = dist, Par0 = Par0_m1,
 states <- viterbi(m1)
 
 table(states)/nrow(elephantData)
+
+plot(m1, plotCI = TRUE, covs = data.frame(hour=12))
+
+pr <- pseudoRes(m1)
+
+acf(pr$stepRes[!is.na(pr$stepRes)],lag.max = 300)
