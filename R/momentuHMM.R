@@ -1,5 +1,5 @@
 library(momentuHMM)
-library(dyplr)
+library(dplyr)
 library(tidyverse)
 library(rgdal)
 

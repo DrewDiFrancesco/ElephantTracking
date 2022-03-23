@@ -1,4 +1,6 @@
 library(tidyverse)
+library(maps)
+library(ggmap)
 
 d1 <- read.csv('data/Bull1Dist.csv') %>% mutate(bulnum = 1)
 d2 <- read.csv('data/Bull2Dist.csv') %>% mutate(bulnum = 2)

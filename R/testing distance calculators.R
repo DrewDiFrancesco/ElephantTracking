@@ -40,17 +40,22 @@ df <- data.frame(dist = c(1.954252,12.98244,17.30848,9.873741),
 View(df)
 library(ggplot2)
 
-p<-ggplot(data=df, aes(x=dist, y=month)) +
-  geom_bar(stat="identity") +
-  ggtitle("Distance Between Bull 2 and 12 During Jan-April 2021")
+levelorder = c("January", "February", "March", "April")
+
+p<-ggplot(data=df, aes(x=factor(month, level = c("January", "February", "March", "April")), y=dist, group = 1)) +
+  geom_line() +
+  ggtitle("Distance Between Bull 2 and 12 During Jan-April 2021") +
+  labs(y = "Distance Apart (miles)", x = "Month")
 p
-p + coord_flip()
+#p + coord_flip()
+
+stat="identity"
 
 
 
 
 
-
+#View(BullData2019)
 
 
 
