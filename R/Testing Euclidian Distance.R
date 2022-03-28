@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 BullData2021 <- read.csv("data/BullData2021.csv")
 #View(BullData2021)
 names(BullData2021)[names(BullData2021)=='?..Time']='Time'
@@ -8,7 +7,6 @@ names(BullData2020)[names(BullData2020)=='?..Time']='Time'
 BullData2019 <- read.csv("data/BullData2019.csv")
 #View(BullData2019)
 names(BullData2019)[names(BullData2019)=='?..Time']='Time'
-=======
 BullData2021 <- read.csv("data/BullData2021.csv")
 # View(BullData2021)
 names(BullData2021)[names(BullData2021)=='?..Time']='Time'
@@ -18,7 +16,7 @@ names(BullData2020)[names(BullData2020)=='?..Time']='Time'
 BullData2019 <- read.csv("data/BullData2019.csv")
 # View(BullData2019)
 names(BullData2019)[names(BullData2019)=='?..Time']='Time'
->>>>>>> 95807be270f091e328cf085dab8334b6d4e380ed
+
 
 
 
@@ -771,6 +769,9 @@ VFRad=max(sqrt((111.319*(VFLatMean-VictoriaFalls$LATITUDE))^2+(96.405*(VFLongMea
 #Bull 1 Tier Circle
 Bull1Dist$Circle=NA
 for (i in 1:nrow(Bull1Dist)){
+  if (is.na(BullData$Lat1)){
+    Bull1Dist$Circle[i]=NA
+  }
   if (sqrt((111.319*(VFLatMean-BullData$Lat1[i]))^2+(96.405*(VFLongMean-BullData$Long1[i]))^2)<VFRad){
     Bull1Dist$Circle[i]=1
   }
