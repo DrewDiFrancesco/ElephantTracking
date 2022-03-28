@@ -769,23 +769,25 @@ plot(c(VictoriaFalls$LONGITUDE,VFLongMean),c(VictoriaFalls$LATITUDE,VFLatMean))
 VFRad=max(sqrt((111.319*(VFLatMean-VictoriaFalls$LATITUDE))^2+(96.405*(VFLongMean-VictoriaFalls$LONGITUDE))^2))
 
 #Bull 1 Tier Circle
-Bull1Dist$Circle=NA
+Bull1Dist$Circle=NULL
 for (i in 1:nrow(Bull1Dist)){
-  if (sqrt((111.319*(VFLatMean-BullData$Lat1[i]))^2+(96.405*(VFLongMean-BullData$Long1[i]))^2)<VFRad){
-    Bull1Dist$Circle[i]=1
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat1[i]))^2+(96.405*(VFLongMean-BullData$Long1[i]))^2)<2*VFRad){
-    Bull1Dist$Circle[i]=2
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat1[i]))^2+(96.405*(VFLongMean-BullData$Long1[i]))^2)<3*VFRad){
-    Bull1Dist$Circle[i]=3
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat1[i]))^2+(96.405*(VFLongMean-BullData$Long1[i]))^2)<4*VFRad){
-    Bull1Dist$Circle[i]=4
-  }
-  else{
-    Bull1Dist$Circle[i]=5
-  }
+  if (!is.na(Bulldata$Lat1[i]) & !is.na(Bulldata$Long1[i])) {
+    if (sqrt((111.319*(VFLatMean-BullData$Lat1[i]))^2+(96.405*(VFLongMean-BullData$Long1[i]))^2)<VFRad){
+      Bull1Dist$Circle[i]=1
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat1[i]))^2+(96.405*(VFLongMean-BullData$Long1[i]))^2)<2*VFRad){
+      Bull1Dist$Circle[i]=2
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat1[i]))^2+(96.405*(VFLongMean-BullData$Long1[i]))^2)<3*VFRad){
+      Bull1Dist$Circle[i]=3
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat1[i]))^2+(96.405*(VFLongMean-BullData$Long1[i]))^2)<4*VFRad){
+      Bull1Dist$Circle[i]=4
+    }
+    else{
+      Bull1Dist$Circle[i]=5
+    }
+  }  
 }
 
 #Bull2 Tier Circle
