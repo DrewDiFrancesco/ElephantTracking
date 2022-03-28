@@ -23,9 +23,9 @@ d14 <- read.csv('data/Bull14Dist.csv') %>% mutate(bulnum = 14, age = 39)
 d15 <- read.csv('data/Bull15Dist.csv') %>% mutate(bulnum = 15, age = 34)
 
 # full joining the distance data
-data <- d1 %>% full_join(d2) %>% full_join(d3) %>% full_join(d4) %>% full_join(d5) %>% full_join(d6) %>% full_join(d7) %>% full_join(d8) %>% full_join(d9) %>% 
-  full_join(d10) %>% full_join(d12) %>% full_join(d13) %>% full_join(d14) %>% full_join(d15) %>% group_by(bulnum)
-data$isinCity <- ifelse(data$Distance_to_Victoria_Falls <= 5, 1, 0) 
+data <- d1[,-1] %>% full_join(d2[,-1]) %>% full_join(d3[,-1]) %>% full_join(d4[,-1]) %>% full_join(d5[,-1]) %>% full_join(d6[,-1]) %>% full_join(d7[,-1]) %>% full_join(d8[,-1]) %>% full_join(d9[,-1]) %>% 
+  full_join(d10[,-1]) %>% full_join(d12[,-1]) %>% full_join(d13[,-1]) %>% full_join(d14[,-1]) %>% full_join(d15[,-1]) %>% group_by(bulnum)
+data$inCity <- ifelse(data$Distance_to_Victoria_Falls <= 5, 1, 0) 
 
 # creating number of bulls nearby indicator
 data$numBullsNear <- 0
@@ -34,7 +34,7 @@ for(i in 1:nrow(data)) {
     if(data$Distance_to_Bull_1[i] == 0) {
       data$numBullsNear[i] = data$numBullsNear[i] + 0
     }
-    else if(data$Distance_to_Bull_1[i] < 2) {
+    else if(data$Distance_to_Bull_1[i] < 1) {
       data$numBullsNear[i] = data$numBullsNear[i] + 1
     }
   } 
@@ -42,7 +42,7 @@ for(i in 1:nrow(data)) {
     if(data$Distance_to_Bull_2[i] == 0) {
       data$numBullsNear[i] = data$numBullsNear[i] + 0
     }
-    else if(data$Distance_to_Bull_2[i] < 2) {
+    else if(data$Distance_to_Bull_2[i] < 1) {
       data$numBullsNear[i] = data$numBullsNear[i] + 1
     }
   }
@@ -50,7 +50,7 @@ for(i in 1:nrow(data)) {
     if(data$Distance_to_Bull_3[i] == 0) {
       data$numBullsNear[i] = data$numBullsNear[i] + 0
     }
-    else if(data$Distance_to_Bull_3[i] < 2) {
+    else if(data$Distance_to_Bull_3[i] < 1) {
       data$numBullsNear[i] = data$numBullsNear[i] + 1
     }
   }
@@ -58,7 +58,7 @@ for(i in 1:nrow(data)) {
     if(data$Distance_to_Bull_4[i] == 0) {
       data$numBullsNear[i] = data$numBullsNear[i] + 0
     }
-    else if(data$Distance_to_Bull_4[i] < 2) {
+    else if(data$Distance_to_Bull_4[i] < 1) {
       data$numBullsNear[i] = data$numBullsNear[i] + 1
     }
   }
@@ -66,7 +66,7 @@ for(i in 1:nrow(data)) {
     if(data$Distance_to_Bull_5[i] == 0) {
       data$numBullsNear[i] = data$numBullsNear[i] + 0
     }
-    else if(data$Distance_to_Bull_5[i] < 2) {
+    else if(data$Distance_to_Bull_5[i] < 1) {
       data$numBullsNear[i] = data$numBullsNear[i] + 1
     }
   }
@@ -74,7 +74,7 @@ for(i in 1:nrow(data)) {
     if(data$Distance_to_Bull_6[i] == 0) {
       data$numBullsNear[i] = data$numBullsNear[i] + 0
     }
-    else if(data$Distance_to_Bull_6[i] < 2) {
+    else if(data$Distance_to_Bull_6[i] < 1) {
       data$numBullsNear[i] = data$numBullsNear[i] + 1
     }
   }
@@ -82,7 +82,7 @@ for(i in 1:nrow(data)) {
     if(data$Distance_to_Bull_7[i] == 0) {
       data$numBullsNear[i] = data$numBullsNear[i] + 0
     }
-    else if(data$Distance_to_Bull_7[i] < 2) {
+    else if(data$Distance_to_Bull_7[i] < 1) {
       data$numBullsNear[i] = data$numBullsNear[i] + 1
     }
   }
@@ -90,7 +90,7 @@ for(i in 1:nrow(data)) {
     if(data$Distance_to_Bull_8[i] == 0) {
       data$numBullsNear[i] = data$numBullsNear[i] + 0
     }
-    else if(data$Distance_to_Bull_8[i] < 2) {
+    else if(data$Distance_to_Bull_8[i] < 1) {
       data$numBullsNear[i] = data$numBullsNear[i] + 1
     }
   }
@@ -98,7 +98,7 @@ for(i in 1:nrow(data)) {
     if(data$Distance_to_Bull_9[i] == 0) {
       data$numBullsNear[i] = data$numBullsNear[i] + 0
     }
-    else if(data$Distance_to_Bull_9[i] < 2) {
+    else if(data$Distance_to_Bull_9[i] < 1) {
       data$numBullsNear[i] = data$numBullsNear[i] + 1
     }
   }
@@ -106,7 +106,7 @@ for(i in 1:nrow(data)) {
     if(data$Distance_to_Bull_10[i] == 0) {
       data$numBullsNear[i] = data$numBullsNear[i] + 0
     }
-    else if(data$Distance_to_Bull_10[i] < 2) {
+    else if(data$Distance_to_Bull_10[i] < 1) {
       data$numBullsNear[i] = data$numBullsNear[i] + 1
     }
   }
@@ -114,7 +114,7 @@ for(i in 1:nrow(data)) {
     if(data$Distance_to_Bull_12[i] == 0) {
       data$numBullsNear[i] = data$numBullsNear[i] + 0
     }
-    else if(data$Distance_to_Bull_12[i] < 2) {
+    else if(data$Distance_to_Bull_12[i] < 1) {
       data$numBullsNear[i] = data$numBullsNear[i] + 1
     }
   }
@@ -122,7 +122,7 @@ for(i in 1:nrow(data)) {
     if(data$Distance_to_Bull_13[i] == 0) {
       data$numBullsNear[i] = data$numBullsNear[i] + 0
     }
-    else if(data$Distance_to_Bull_13[i] < 2) {
+    else if(data$Distance_to_Bull_13[i] < 1) {
       data$numBullsNear[i] = data$numBullsNear[i] + 1
     }
   }
@@ -130,7 +130,7 @@ for(i in 1:nrow(data)) {
     if(data$Distance_to_Bull_14[i] == 0) {
       data$numBullsNear[i] = data$numBullsNear[i] + 0
     }
-    else if(data$Distance_to_Bull_14[i] < 2) {
+    else if(data$Distance_to_Bull_14[i] < 1) {
       data$numBullsNear[i] = data$numBullsNear[i] + 1
     }
   }
@@ -138,11 +138,18 @@ for(i in 1:nrow(data)) {
     if(data$Distance_to_Bull_15[i] == 0) {
       data$numBullsNear[i] = data$numBullsNear[i] + 0
     }
-    else if(data$Distance_to_Bull_15[i] < 2) {
+    else if(data$Distance_to_Bull_15[i] < 1) {
       data$numBullsNear[i] = data$numBullsNear[i] + 1
     }
   }
 }
 
+# In city tomorrow indicator
 
+data$inCityTmrw = 0
+for(i in 2:nrow(data)) {
+  if(!is.na(data$inCity[(i-1)]) & data$inCity[(i-1)] ==1) {
+    data$inCityTmrw[i] = 1
+  }  
+}
 
