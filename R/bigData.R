@@ -153,3 +153,8 @@ for(i in 2:nrow(data)) {
   }  
 }
 
+
+#fitting a linear model:
+elephantmodel = lm(data$inCityTmrw ~ data$age, data$inCity, data$Distance_to_Zambezi_River, data$Distance_to_Victoria_Falls, data$numBullsNear, data = data)
+#still need to handle the missing values
+
