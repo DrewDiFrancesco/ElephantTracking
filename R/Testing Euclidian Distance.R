@@ -723,21 +723,7 @@ Bull13Dist=data.frame(Bull13Dist)
 Bull14Dist=data.frame(Bull14Dist)
 Bull15Dist=data.frame(Bull15Dist)
 
-write.csv(BullData,"data/BullData.csv")
-write.csv(Bull1Dist,"data/Bull1Dist.csv")
-write.csv(Bull2Dist,"data/Bull2Dist.csv")
-write.csv(Bull3Dist,"data/Bull3Dist.csv")
-write.csv(Bull4Dist,"data/Bull4Dist.csv")
-write.csv(Bull5Dist,"data/Bull5Dist.csv")
-write.csv(Bull6Dist,"data/Bull6Dist.csv")
-write.csv(Bull7Dist,"data/Bull7Dist.csv")
-write.csv(Bull8Dist,"data/Bull8Dist.csv")
-write.csv(Bull9Dist,"data/Bull9Dist.csv")
-write.csv(Bull10Dist,"data/Bull10Dist.csv")
-write.csv(Bull12Dist,"data/Bull12Dist.csv")
-write.csv(Bull13Dist,"data/Bull13Dist.csv")
-write.csv(Bull14Dist,"data/Bull14Dist.csv")
-write.csv(Bull15Dist,"data/Bull15Dist.csv")
+
 
 ts.plot(Bull1Dist$Distance_to_Bull_6,xlab="Time (Days since May 1, 2019)",ylab="Distance (km) between Bull 1 and 6")
 ts.plot(Bull2Dist$Distance_to_Zambezi_River,xlab="Time (Days since May 1, 2019)",ylab="Distance (km) between Bull2 and Zambezi River",col="Blue")
@@ -873,7 +859,7 @@ for (i in 1:nrow(Bull5Dist)){
     }
   }
   else{
-    Bull2Dist$Circle[i]=NA
+    Bull5Dist$Circle[i]=NA
   }
 }
 
@@ -904,7 +890,7 @@ for (i in 1:nrow(Bull6Dist)){
 
 #Bull7 Tier Circle
 Bull7Dist$Circle=NA
-for (i in 1:nrow(Bull2Dist)){
+for (i in 1:nrow(Bull7Dist)){
   if (!is.na(BullData$Lat7[i])){
     if (sqrt((111.319*(VFLatMean-BullData$Lat7[i]))^2+(96.405*(VFLongMean-BullData$Long7[i]))^2)<VFRad){
       Bull7Dist$Circle[i]=1
@@ -1100,4 +1086,35 @@ for (i in 1:nrow(Bull15Dist)){
     Bull15Dist$Circle[i]=NA
   }
 }
-View(Bull15Dist)
+
+BullData$Date=as.Date(as.POSIXct(BullData$Date,origin="1970-01-01"))
+Bull1Dist[,1]=BullData$Date
+Bull2Dist[,1]=BullData$Date
+Bull3Dist[,1]=BullData$Date
+Bull4Dist[,1]=BullData$Date
+Bull5Dist[,1]=BullData$Date
+Bull6Dist[,1]=BullData$Date
+Bull7Dist[,1]=BullData$Date
+Bull8Dist[,1]=BullData$Date
+Bull9Dist[,1]=BullData$Date
+Bull10Dist[,1]=BullData$Date
+Bull12Dist[,1]=BullData$Date
+Bull13Dist[,1]=BullData$Date
+Bull14Dist[,1]=BullData$Date
+Bull15Dist[,1]=BullData$Date
+
+write.csv(BullData,"data/BullData.csv")
+write.csv(Bull1Dist,"data/Bull1Dist.csv")
+write.csv(Bull2Dist,"data/Bull2Dist.csv")
+write.csv(Bull3Dist,"data/Bull3Dist.csv")
+write.csv(Bull4Dist,"data/Bull4Dist.csv")
+write.csv(Bull5Dist,"data/Bull5Dist.csv")
+write.csv(Bull6Dist,"data/Bull6Dist.csv")
+write.csv(Bull7Dist,"data/Bull7Dist.csv")
+write.csv(Bull8Dist,"data/Bull8Dist.csv")
+write.csv(Bull9Dist,"data/Bull9Dist.csv")
+write.csv(Bull10Dist,"data/Bull10Dist.csv")
+write.csv(Bull12Dist,"data/Bull12Dist.csv")
+write.csv(Bull13Dist,"data/Bull13Dist.csv")
+write.csv(Bull14Dist,"data/Bull14Dist.csv")
+write.csv(Bull15Dist,"data/Bull15Dist.csv")
