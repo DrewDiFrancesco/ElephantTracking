@@ -767,12 +767,9 @@ plot(c(VictoriaFalls$LONGITUDE,VFLongMean),c(VictoriaFalls$LATITUDE,VFLatMean))
 VFRad=max(sqrt((111.319*(VFLatMean-VictoriaFalls$LATITUDE))^2+(96.405*(VFLongMean-VictoriaFalls$LONGITUDE))^2))
 
 #Bull 1 Tier Circle
-Bull1Dist$Circle=NULL
+Bull1Dist$Circle=NA
 for (i in 1:nrow(Bull1Dist)){
-
-  if (is.na(BullData$Lat1)){
-    Bull1Dist$Circle[i]=NA
-  }
+  if (!is.na(BullData$Lat1[i])){
   if (sqrt((111.319*(VFLatMean-BullData$Lat1[i]))^2+(96.405*(VFLongMean-BullData$Long1[i]))^2)<VFRad){
     Bull1Dist$Circle[i]=1
   }
@@ -788,284 +785,333 @@ for (i in 1:nrow(Bull1Dist)){
   else{
     Bull1Dist$Circle[i]=5
   }
-
-  if (!is.na(Bulldata$Lat1[i]) & !is.na(Bulldata$Long1[i])) {
-    if (sqrt((111.319*(VFLatMean-BullData$Lat1[i]))^2+(96.405*(VFLongMean-BullData$Long1[i]))^2)<VFRad){
-      Bull1Dist$Circle[i]=1
-    }
-    else if (sqrt((111.319*(VFLatMean-BullData$Lat1[i]))^2+(96.405*(VFLongMean-BullData$Long1[i]))^2)<2*VFRad){
-      Bull1Dist$Circle[i]=2
-    }
-    else if (sqrt((111.319*(VFLatMean-BullData$Lat1[i]))^2+(96.405*(VFLongMean-BullData$Long1[i]))^2)<3*VFRad){
-      Bull1Dist$Circle[i]=3
-    }
-    else if (sqrt((111.319*(VFLatMean-BullData$Lat1[i]))^2+(96.405*(VFLongMean-BullData$Long1[i]))^2)<4*VFRad){
-      Bull1Dist$Circle[i]=4
-    }
-    else{
-      Bull1Dist$Circle[i]=5
-    }
-  }  
+  }
+  else{
+    Bull1Dist$Circle[i]=NA
+  }
 }
 
 #Bull2 Tier Circle
 Bull2Dist$Circle=NA
 for (i in 1:nrow(Bull2Dist)){
-  if (sqrt((111.319*(VFLatMean-BullData$Lat2[i]))^2+(96.405*(VFLongMean-BullData$Long2[i]))^2)<VFRad){
-    Bull2Dist$Circle[i]=1
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat2[i]))^2+(96.405*(VFLongMean-BullData$Long2[i]))^2)<2*VFRad){
-    Bull2Dist$Circle[i]=2
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat2[i]))^2+(96.405*(VFLongMean-BullData$Long2[i]))^2)<3*VFRad){
-    Bull2Dist$Circle[i]=3
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat2[i]))^2+(96.405*(VFLongMean-BullData$Long2[i]))^2)<4*VFRad){
-    Bull2Dist$Circle[i]=4
+  if (!is.na(BullData$Lat2[i])){
+    if (sqrt((111.319*(VFLatMean-BullData$Lat2[i]))^2+(96.405*(VFLongMean-BullData$Long2[i]))^2)<VFRad){
+      Bull2Dist$Circle[i]=1
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat2[i]))^2+(96.405*(VFLongMean-BullData$Long2[i]))^2)<2*VFRad){
+      Bull2Dist$Circle[i]=2
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat2[i]))^2+(96.405*(VFLongMean-BullData$Long2[i]))^2)<3*VFRad){
+      Bull2Dist$Circle[i]=3
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat2[i]))^2+(96.405*(VFLongMean-BullData$Long2[i]))^2)<4*VFRad){
+      Bull2Dist$Circle[i]=4
+    }
+    else{
+      Bull2Dist$Circle[i]=5
+    }
   }
   else{
-    Bull2Dist$Circle[i]=5
+    Bull2Dist$Circle[i]=NA
   }
 }
 
 #Bull3 Tier Circle
 Bull3Dist$Circle=NA
 for (i in 1:nrow(Bull3Dist)){
-  if (sqrt((111.319*(VFLatMean-BullData$Lat3[i]))^2+(96.405*(VFLongMean-BullData$Long3[i]))^2)<VFRad){
-    Bull3Dist$Circle[i]=1
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat3[i]))^2+(96.405*(VFLongMean-BullData$Long3[i]))^2)<2*VFRad){
-    Bull3Dist$Circle[i]=2
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat3[i]))^2+(96.405*(VFLongMean-BullData$Long3[i]))^2)<3*VFRad){
-    Bull3Dist$Circle[i]=3
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat3[i]))^2+(96.405*(VFLongMean-BullData$Long3[i]))^2)<4*VFRad){
-    Bull3Dist$Circle[i]=4
+  if (!is.na(BullData$Lat3[i])){
+    if (sqrt((111.319*(VFLatMean-BullData$Lat3[i]))^2+(96.405*(VFLongMean-BullData$Long3[i]))^2)<VFRad){
+      Bull3Dist$Circle[i]=1
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat3[i]))^2+(96.405*(VFLongMean-BullData$Long3[i]))^2)<2*VFRad){
+      Bull3Dist$Circle[i]=2
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat3[i]))^2+(96.405*(VFLongMean-BullData$Long3[i]))^2)<3*VFRad){
+      Bull3Dist$Circle[i]=3
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat3[i]))^2+(96.405*(VFLongMean-BullData$Long3[i]))^2)<4*VFRad){
+      Bull3Dist$Circle[i]=4
+    }
+    else{
+      Bull3Dist$Circle[i]=5
+    }
   }
   else{
-    Bull3Dist$Circle[i]=5
+    Bull3Dist$Circle[i]=NA
   }
 }
 
 #Bull4 Tier Circle
 Bull4Dist$Circle=NA
 for (i in 1:nrow(Bull4Dist)){
-  if (sqrt((111.319*(VFLatMean-BullData$Lat4[i]))^2+(96.405*(VFLongMean-BullData$Long4[i]))^2)<VFRad){
-    Bull4Dist$Circle[i]=1
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat4[i]))^2+(96.405*(VFLongMean-BullData$Long4[i]))^2)<2*VFRad){
-    Bull4Dist$Circle[i]=2
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat4[i]))^2+(96.405*(VFLongMean-BullData$Long4[i]))^2)<3*VFRad){
-    Bull4Dist$Circle[i]=3
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat4[i]))^2+(96.405*(VFLongMean-BullData$Long4[i]))^2)<4*VFRad){
-    Bull4Dist$Circle[i]=4
+  if (!is.na(BullData$Lat4[i])){
+    if (sqrt((111.319*(VFLatMean-BullData$Lat4[i]))^2+(96.405*(VFLongMean-BullData$Long4[i]))^2)<VFRad){
+      Bull4Dist$Circle[i]=1
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat4[i]))^2+(96.405*(VFLongMean-BullData$Long4[i]))^2)<2*VFRad){
+      Bull4Dist$Circle[i]=2
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat4[i]))^2+(96.405*(VFLongMean-BullData$Long4[i]))^2)<3*VFRad){
+      Bull4Dist$Circle[i]=3
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat4[i]))^2+(96.405*(VFLongMean-BullData$Long4[i]))^2)<4*VFRad){
+      Bull4Dist$Circle[i]=4
+    }
+    else{
+      Bull4Dist$Circle[i]=5
+    }
   }
   else{
-    Bull4Dist$Circle[i]=5
+    Bull4Dist$Circle[i]=NA
   }
 }
 
 #Bull5 Tier Circle
 Bull5Dist$Circle=NA
 for (i in 1:nrow(Bull5Dist)){
-  if (sqrt((111.319*(VFLatMean-BullData$Lat5[i]))^2+(96.405*(VFLongMean-BullData$Long5[i]))^2)<VFRad){
-    Bull5Dist$Circle[i]=1
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat5[i]))^2+(96.405*(VFLongMean-BullData$Long5[i]))^2)<2*VFRad){
-    Bull5Dist$Circle[i]=2
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat5[i]))^2+(96.405*(VFLongMean-BullData$Long5[i]))^2)<3*VFRad){
-    Bull5Dist$Circle[i]=3
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat5[i]))^2+(96.405*(VFLongMean-BullData$Long5[i]))^2)<4*VFRad){
-    Bull5Dist$Circle[i]=4
+  if (!is.na(BullData$Lat5[i])){
+    if (sqrt((111.319*(VFLatMean-BullData$Lat5[i]))^2+(96.405*(VFLongMean-BullData$Long5[i]))^2)<VFRad){
+      Bull5Dist$Circle[i]=1
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat5[i]))^2+(96.405*(VFLongMean-BullData$Long5[i]))^2)<2*VFRad){
+      Bull5Dist$Circle[i]=2
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat5[i]))^2+(96.405*(VFLongMean-BullData$Long5[i]))^2)<3*VFRad){
+      Bull5Dist$Circle[i]=3
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat5[i]))^2+(96.405*(VFLongMean-BullData$Long5[i]))^2)<4*VFRad){
+      Bull5Dist$Circle[i]=4
+    }
+    else{
+      Bull5Dist$Circle[i]=5
+    }
   }
   else{
-    Bull5Dist$Circle[i]=5
+    Bull2Dist$Circle[i]=NA
   }
 }
 
 #Bull6 Tier Circle
 Bull6Dist$Circle=NA
 for (i in 1:nrow(Bull6Dist)){
-  if (sqrt((111.319*(VFLatMean-BullData$Lat6[i]))^2+(96.405*(VFLongMean-BullData$Long6[i]))^2)<VFRad){
-    Bull6Dist$Circle[i]=1
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat6[i]))^2+(96.405*(VFLongMean-BullData$Long6[i]))^2)<2*VFRad){
-    Bull6Dist$Circle[i]=2
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat6[i]))^2+(96.405*(VFLongMean-BullData$Long6[i]))^2)<3*VFRad){
-    Bull6Dist$Circle[i]=3
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat6[i]))^2+(96.405*(VFLongMean-BullData$Long6[i]))^2)<4*VFRad){
-    Bull6Dist$Circle[i]=4
+  if (!is.na(BullData$Lat6[i])){
+    if (sqrt((111.319*(VFLatMean-BullData$Lat6[i]))^2+(96.405*(VFLongMean-BullData$Long6[i]))^2)<VFRad){
+      Bull6Dist$Circle[i]=1
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat6[i]))^2+(96.405*(VFLongMean-BullData$Long6[i]))^2)<2*VFRad){
+      Bull6Dist$Circle[i]=2
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat6[i]))^2+(96.405*(VFLongMean-BullData$Long6[i]))^2)<3*VFRad){
+      Bull6Dist$Circle[i]=3
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat6[i]))^2+(96.405*(VFLongMean-BullData$Long6[i]))^2)<4*VFRad){
+      Bull6Dist$Circle[i]=4
+    }
+    else{
+      Bull6Dist$Circle[i]=5
+    }
   }
   else{
-    Bull6Dist$Circle[i]=5
+    Bull6Dist$Circle[i]=NA
   }
 }
 
 #Bull7 Tier Circle
 Bull7Dist$Circle=NA
-for (i in 1:nrow(Bull7Dist)){
-  if (sqrt((111.319*(VFLatMean-BullData$Lat7[i]))^2+(96.405*(VFLongMean-BullData$Long7[i]))^2)<VFRad){
-    Bull7Dist$Circle[i]=1
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat7[i]))^2+(96.405*(VFLongMean-BullData$Long7[i]))^2)<2*VFRad){
-    Bull7Dist$Circle[i]=2
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat7[i]))^2+(96.405*(VFLongMean-BullData$Long7[i]))^2)<3*VFRad){
-    Bull7Dist$Circle[i]=3
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat7[i]))^2+(96.405*(VFLongMean-BullData$Long7[i]))^2)<4*VFRad){
-    Bull7Dist$Circle[i]=4
+for (i in 1:nrow(Bull2Dist)){
+  if (!is.na(BullData$Lat7[i])){
+    if (sqrt((111.319*(VFLatMean-BullData$Lat7[i]))^2+(96.405*(VFLongMean-BullData$Long7[i]))^2)<VFRad){
+      Bull7Dist$Circle[i]=1
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat7[i]))^2+(96.405*(VFLongMean-BullData$Long7[i]))^2)<2*VFRad){
+      Bull7Dist$Circle[i]=2
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat7[i]))^2+(96.405*(VFLongMean-BullData$Long7[i]))^2)<3*VFRad){
+      Bull7Dist$Circle[i]=3
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat7[i]))^2+(96.405*(VFLongMean-BullData$Long7[i]))^2)<4*VFRad){
+      Bull7Dist$Circle[i]=4
+    }
+    else{
+      Bull7Dist$Circle[i]=5
+    }
   }
   else{
-    Bull7Dist$Circle[i]=5
+    Bull7Dist$Circle[i]=NA
   }
 }
 
 #Bull8 Tier Circle
 Bull8Dist$Circle=NA
 for (i in 1:nrow(Bull8Dist)){
-  if (sqrt((111.319*(VFLatMean-BullData$Lat8[i]))^2+(96.405*(VFLongMean-BullData$Long8[i]))^2)<VFRad){
-    Bull8Dist$Circle[i]=1
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat8[i]))^2+(96.405*(VFLongMean-BullData$Long8[i]))^2)<2*VFRad){
-    Bull8Dist$Circle[i]=2
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat8[i]))^2+(96.405*(VFLongMean-BullData$Long8[i]))^2)<3*VFRad){
-    Bull8Dist$Circle[i]=3
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat8[i]))^2+(96.405*(VFLongMean-BullData$Long8[i]))^2)<4*VFRad){
-    Bull8Dist$Circle[i]=4
+  if (!is.na(BullData$Lat8[i])){
+    if (sqrt((111.319*(VFLatMean-BullData$Lat8[i]))^2+(96.405*(VFLongMean-BullData$Long8[i]))^2)<VFRad){
+      Bull8Dist$Circle[i]=1
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat8[i]))^2+(96.405*(VFLongMean-BullData$Long8[i]))^2)<2*VFRad){
+      Bull8Dist$Circle[i]=2
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat8[i]))^2+(96.405*(VFLongMean-BullData$Long8[i]))^2)<3*VFRad){
+      Bull8Dist$Circle[i]=3
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat8[i]))^2+(96.405*(VFLongMean-BullData$Long8[i]))^2)<4*VFRad){
+      Bull8Dist$Circle[i]=4
+    }
+    else{
+      Bull8Dist$Circle[i]=5
+    }
   }
   else{
-    Bull8Dist$Circle[i]=5
+    Bull8Dist$Circle[i]=NA
   }
 }
 
 #Bull9 Tier Circle
 Bull9Dist$Circle=NA
 for (i in 1:nrow(Bull9Dist)){
-  if (sqrt((111.319*(VFLatMean-BullData$Lat9[i]))^2+(96.405*(VFLongMean-BullData$Long9[i]))^2)<VFRad){
-    Bull9Dist$Circle[i]=1
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat9[i]))^2+(96.405*(VFLongMean-BullData$Long9[i]))^2)<2*VFRad){
-    Bull9Dist$Circle[i]=2
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat9[i]))^2+(96.405*(VFLongMean-BullData$Long9[i]))^2)<3*VFRad){
-    Bull9Dist$Circle[i]=3
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat9[i]))^2+(96.405*(VFLongMean-BullData$Long9[i]))^2)<4*VFRad){
-    Bull9Dist$Circle[i]=4
+  if (!is.na(BullData$Lat9[i])){
+    if (sqrt((111.319*(VFLatMean-BullData$Lat9[i]))^2+(96.405*(VFLongMean-BullData$Long9[i]))^2)<VFRad){
+      Bull9Dist$Circle[i]=1
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat9[i]))^2+(96.405*(VFLongMean-BullData$Long9[i]))^2)<2*VFRad){
+      Bull9Dist$Circle[i]=2
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat9[i]))^2+(96.405*(VFLongMean-BullData$Long9[i]))^2)<3*VFRad){
+      Bull9Dist$Circle[i]=3
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat9[i]))^2+(96.405*(VFLongMean-BullData$Long9[i]))^2)<4*VFRad){
+      Bull9Dist$Circle[i]=4
+    }
+    else{
+      Bull9Dist$Circle[i]=5
+    }
   }
   else{
-    Bull9Dist$Circle[i]=5
+    Bull9Dist$Circle[i]=NA
   }
 }
 
 #Bull 10 Tier Circle
 Bull10Dist$Circle=NA
 for (i in 1:nrow(Bull10Dist)){
-  if (sqrt((111.319*(VFLatMean-BullData$Lat10[i]))^2+(96.405*(VFLongMean-BullData$Long10[i]))^2)<VFRad){
-    Bull10Dist$Circle[i]=1
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat10[i]))^2+(96.405*(VFLongMean-BullData$Long10[i]))^2)<2*VFRad){
-    Bull10Dist$Circle[i]=2
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat10[i]))^2+(96.405*(VFLongMean-BullData$Long10[i]))^2)<3*VFRad){
-    Bull10Dist$Circle[i]=3
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat10[i]))^2+(96.405*(VFLongMean-BullData$Long10[i]))^2)<4*VFRad){
-    Bull10Dist$Circle[i]=4
+  if (!is.na(BullData$Lat10[i])){
+    if (sqrt((111.319*(VFLatMean-BullData$Lat10[i]))^2+(96.405*(VFLongMean-BullData$Long10[i]))^2)<VFRad){
+      Bull10Dist$Circle[i]=1
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat10[i]))^2+(96.405*(VFLongMean-BullData$Long10[i]))^2)<2*VFRad){
+      Bull10Dist$Circle[i]=2
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat10[i]))^2+(96.405*(VFLongMean-BullData$Long10[i]))^2)<3*VFRad){
+      Bull10Dist$Circle[i]=3
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat10[i]))^2+(96.405*(VFLongMean-BullData$Long10[i]))^2)<4*VFRad){
+      Bull10Dist$Circle[i]=4
+    }
+    else{
+      Bull10Dist$Circle[i]=5
+    }
   }
   else{
-    Bull10Dist$Circle[i]=5
+    Bull10Dist$Circle[i]=NA
   }
 }
-
 #Bull 12 Tier Circle
 Bull12Dist$Circle=NA
 for (i in 1:nrow(Bull12Dist)){
-  if (sqrt((111.319*(VFLatMean-BullData$Lat12[i]))^2+(96.405*(VFLongMean-BullData$Long12[i]))^2)<VFRad){
-    Bull12Dist$Circle[i]=1
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat12[i]))^2+(96.405*(VFLongMean-BullData$Long12[i]))^2)<2*VFRad){
-    Bull12Dist$Circle[i]=2
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat12[i]))^2+(96.405*(VFLongMean-BullData$Long12[i]))^2)<3*VFRad){
-    Bull12Dist$Circle[i]=3
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat12[i]))^2+(96.405*(VFLongMean-BullData$Long12[i]))^2)<4*VFRad){
-    Bull12Dist$Circle[i]=4
+  if (!is.na(BullData$Lat12[i])){
+    if (sqrt((111.319*(VFLatMean-BullData$Lat12[i]))^2+(96.405*(VFLongMean-BullData$Long12[i]))^2)<VFRad){
+      Bull12Dist$Circle[i]=1
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat12[i]))^2+(96.405*(VFLongMean-BullData$Long12[i]))^2)<2*VFRad){
+      Bull12Dist$Circle[i]=2
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat12[i]))^2+(96.405*(VFLongMean-BullData$Long12[i]))^2)<3*VFRad){
+      Bull12Dist$Circle[i]=3
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat12[i]))^2+(96.405*(VFLongMean-BullData$Long12[i]))^2)<4*VFRad){
+      Bull12Dist$Circle[i]=4
+    }
+    else{
+      Bull12Dist$Circle[i]=5
+    }
   }
   else{
-    Bull12Dist$Circle[i]=5
+    Bull12Dist$Circle[i]=NA
   }
 }
 
 #Bull 13 Tier Circle
 Bull13Dist$Circle=NA
 for (i in 1:nrow(Bull13Dist)){
-  if (sqrt((111.319*(VFLatMean-BullData$Lat13[i]))^2+(96.405*(VFLongMean-BullData$Long13[i]))^2)<VFRad){
-    Bull13Dist$Circle[i]=1
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat13[i]))^2+(96.405*(VFLongMean-BullData$Long13[i]))^2)<2*VFRad){
-    Bull13Dist$Circle[i]=2
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat13[i]))^2+(96.405*(VFLongMean-BullData$Long13[i]))^2)<3*VFRad){
-    Bull13Dist$Circle[i]=3
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat13[i]))^2+(96.405*(VFLongMean-BullData$Long13[i]))^2)<4*VFRad){
-    Bull13Dist$Circle[i]=4
+  if (!is.na(BullData$Lat13[i])){
+    if (sqrt((111.319*(VFLatMean-BullData$Lat13[i]))^2+(96.405*(VFLongMean-BullData$Long13[i]))^2)<VFRad){
+      Bull13Dist$Circle[i]=1
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat13[i]))^2+(96.405*(VFLongMean-BullData$Long13[i]))^2)<2*VFRad){
+      Bull13Dist$Circle[i]=2
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat13[i]))^2+(96.405*(VFLongMean-BullData$Long13[i]))^2)<3*VFRad){
+      Bull13Dist$Circle[i]=3
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat13[i]))^2+(96.405*(VFLongMean-BullData$Long13[i]))^2)<4*VFRad){
+      Bull13Dist$Circle[i]=4
+    }
+    else{
+      Bull13Dist$Circle[i]=5
+    }
   }
   else{
-    Bull13Dist$Circle[i]=5
+    Bull13Dist$Circle[i]=NA
   }
 }
 
 #Bull 14 Tier Circle
 Bull14Dist$Circle=NA
 for (i in 1:nrow(Bull14Dist)){
-  if (sqrt((111.319*(VFLatMean-BullData$Lat14[i]))^2+(96.405*(VFLongMean-BullData$Long14[i]))^2)<VFRad){
-    Bull14Dist$Circle[i]=1
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat14[i]))^2+(96.405*(VFLongMean-BullData$Long14[i]))^2)<2*VFRad){
-    Bull14Dist$Circle[i]=2
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat14[i]))^2+(96.405*(VFLongMean-BullData$Long14[i]))^2)<3*VFRad){
-    Bull14Dist$Circle[i]=3
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat14[i]))^2+(96.405*(VFLongMean-BullData$Long14[i]))^2)<4*VFRad){
-    Bull14Dist$Circle[i]=4
+  if (!is.na(BullData$Lat14[i])){
+    if (sqrt((111.319*(VFLatMean-BullData$Lat14[i]))^2+(96.405*(VFLongMean-BullData$Long14[i]))^2)<VFRad){
+      Bull14Dist$Circle[i]=1
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat14[i]))^2+(96.405*(VFLongMean-BullData$Long14[i]))^2)<2*VFRad){
+      Bull14Dist$Circle[i]=2
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat14[i]))^2+(96.405*(VFLongMean-BullData$Long14[i]))^2)<3*VFRad){
+      Bull14Dist$Circle[i]=3
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat14[i]))^2+(96.405*(VFLongMean-BullData$Long14[i]))^2)<4*VFRad){
+      Bull14Dist$Circle[i]=4
+    }
+    else{
+      Bull14Dist$Circle[i]=5
+    }
   }
   else{
-    Bull14Dist$Circle[i]=5
+    Bull14Dist$Circle[i]=NA
   }
 }
 
 #Bull 15 Tier Circle
 Bull15Dist$Circle=NA
 for (i in 1:nrow(Bull15Dist)){
-  if (sqrt((111.319*(VFLatMean-BullData$Lat15[i]))^2+(96.405*(VFLongMean-BullData$Long15[i]))^2)<VFRad){
-    Bull15Dist$Circle[i]=1
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat15[i]))^2+(96.405*(VFLongMean-BullData$Long15[i]))^2)<2*VFRad){
-    Bull15Dist$Circle[i]=2
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat15[i]))^2+(96.405*(VFLongMean-BullData$Long15[i]))^2)<3*VFRad){
-    Bull15Dist$Circle[i]=3
-  }
-  else if (sqrt((111.319*(VFLatMean-BullData$Lat15[i]))^2+(96.405*(VFLongMean-BullData$Long15[i]))^2)<4*VFRad){
-    Bull15Dist$Circle[i]=4
+  if (!is.na(BullData$Lat15[i])){
+    if (sqrt((111.319*(VFLatMean-BullData$Lat15[i]))^2+(96.405*(VFLongMean-BullData$Long15[i]))^2)<VFRad){
+      Bull15Dist$Circle[i]=1
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat15[i]))^2+(96.405*(VFLongMean-BullData$Long15[i]))^2)<2*VFRad){
+      Bull15Dist$Circle[i]=2
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat15[i]))^2+(96.405*(VFLongMean-BullData$Long15[i]))^2)<3*VFRad){
+      Bull15Dist$Circle[i]=3
+    }
+    else if (sqrt((111.319*(VFLatMean-BullData$Lat15[i]))^2+(96.405*(VFLongMean-BullData$Long15[i]))^2)<4*VFRad){
+      Bull15Dist$Circle[i]=4
+    }
+    else{
+      Bull15Dist$Circle[i]=5
+    }
   }
   else{
-    Bull15Dist$Circle[i]=5
+    Bull15Dist$Circle[i]=NA
   }
 }
-
 View(Bull15Dist)
