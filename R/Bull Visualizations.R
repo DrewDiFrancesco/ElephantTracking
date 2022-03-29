@@ -6,7 +6,7 @@ require(gganimate)
 
 b1 <- read.csv('data/hourlyBullData2019.csv') %>% filter(BulNum == 1)
 b1 <- b1[,-1]
-b1$doy <- as.numeric(strftime(b1$ï..Time, format = "%j"))
+b1$doy <- as.numeric(strftime(b1$Time, format = "%j"))
 
 lat <- rbind(b1[2],b1[2])
 lon <- rbind(b1[3],b1[3])
@@ -24,7 +24,7 @@ p+transition_reveal(b1$doy)
 
 
 ##
-Bull1=Bull1[order(Bull1$ï..Time),] #order
+Bull1=Bull1[order(Bull1$Time),] #order
 
 n=1:(nrow(Bull1)/4)*4
 Bull1a=Bull1[n,]   #selecting only every 4 hours
@@ -33,7 +33,7 @@ Bull1a$doy <- as.numeric(strftime(Bull1a$ï..Time, format = "%j"))   #creating v
 
 
 Bull <- rbind(Bull1[c(1,2,3,4,5)],Bull2[c(1,2,3,4,5)],Bull3[c(1,2,3,4,5)],Bull4[c(1,2,3,4,5)],Bull5[c(1,2,3,4,5)],Bull6[c(1,2,3,4,5)])
-Bull=Bull[order(Bull$ï..Time),] 
+Bull=Bull[order(Bull$Time),] 
 
 
 
