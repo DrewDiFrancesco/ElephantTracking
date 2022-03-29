@@ -165,7 +165,7 @@ train.data  <- model[training.samples, ]
 test.data <- model[-training.samples, ]
 
 #fitting a linear model:
-elephantmodel = lm(inCityTmrw ~ Distance_to_Zambezi_River + Circle + bulnum + age + julday + numBullsNear , data = train.data)
+elephantmodel = lm(inCityTmrw ~ Distance_to_Zambezi_River + Circle  + age + julday + numBullsNear , data = train.data)
 
 predictions <- predict(elephantmodel,test.data)
 
