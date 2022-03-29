@@ -7,7 +7,7 @@ VictoriaFalls=VFZR[c(1:77),c(2,3)]
 ZambeziRiver=VFZR[c(78:nrow(VFZR)),c(2,3)]
 
 # pulling each bull's data
-d1 <- read.csv('data/Bull1Dist.csv') %>% mutate(bulnum = 1, age = 22)
+d1 <- read.csv('data/Bull1Dist.csv') %>% mutate(bulnum = 1, age = 22) #%>% mutate(julday = yday(as.Date(Date)))
 d2 <- read.csv('data/Bull2Dist.csv') %>% mutate(bulnum = 2, age = 34)
 d3 <- read.csv('data/Bull3Dist.csv') %>% mutate(bulnum = 3, age = 29)
 d4 <- read.csv('data/Bull4Dist.csv') %>% mutate(bulnum = 4, age = 24)
