@@ -7,16 +7,6 @@ names(BullData2020)[names(BullData2020)=='?..Time']='Time'
 BullData2019 <- read.csv("data/BullData2019.csv")
 #View(BullData2019)
 names(BullData2019)[names(BullData2019)=='?..Time']='Time'
-BullData2021 <- read.csv("data/BullData2021.csv")
-# View(BullData2021)
-names(BullData2021)[names(BullData2021)=='?..Time']='Time'
-BullData2020 <- read.csv("data/BullData2020.csv")
-# View(BullData2020)
-names(BullData2020)[names(BullData2020)=='?..Time']='Time'
-BullData2019 <- read.csv("data/BullData2019.csv")
-# View(BullData2019)
-names(BullData2019)[names(BullData2019)=='?..Time']='Time'
-
 
 
 
@@ -534,15 +524,11 @@ BullData=BullData[,c("Date","Lat1","Long1","Lat2","Long2","Lat3","Long3","Lat4",
 ########## Testing Distances
 
 # Zambezi River Distance
-<<<<<<< HEAD
-VFZR=read.csv("~/GitHub/ElephantTracking/data/VictoriaFallsCity-ZambeziRiver.csv")
-VictoriaFalls=VFZR[c(1:77),c(2,3)]
-ZambeziRiver=VFZR[c(78:nrow(VFZR)),c(2,3)]
-=======
+
 VFZR=read.csv("data/VictoriaFallsCity-ZambeziRiver.csv")
 ZambeziRiver=VFZR[c(78:nrow(VFZR)),c(2,3)]
 VictoriaFalls=VFZR[c(1:77),c(2,3)]
->>>>>>> 95807be270f091e328cf085dab8334b6d4e380ed
+
 
 
 Bull1Dist=matrix(NA,nrow=nrow(BullData),ncol=(ncol(BullData)-1)/2+3)
