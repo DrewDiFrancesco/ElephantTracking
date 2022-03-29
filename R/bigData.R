@@ -175,4 +175,7 @@ RMSE(predictions, test.data$inCityTmrw)
 # R-Square
 R2(predictions, test.data$inCityTmrw)
 
+#summary of our model
+summary(elephantmodel)
+
 
