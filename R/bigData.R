@@ -1,4 +1,6 @@
 library(tidyverse)
+library(caret)
+library(lubridate)
 
 VFZR=read.csv("data/VictoriaFallsCity-ZambeziRiver.csv")
 
@@ -7,20 +9,20 @@ VictoriaFalls=VFZR[c(1:77),c(2,3)]
 ZambeziRiver=VFZR[c(78:nrow(VFZR)),c(2,3)]
 
 # pulling each bull's data
-d1 <- read.csv('data/Bull1Dist.csv') %>% mutate(bulnum = 1, age = 22) #%>% mutate(julday = yday(as.Date(Date)))
-d2 <- read.csv('data/Bull2Dist.csv') %>% mutate(bulnum = 2, age = 34)
-d3 <- read.csv('data/Bull3Dist.csv') %>% mutate(bulnum = 3, age = 29)
-d4 <- read.csv('data/Bull4Dist.csv') %>% mutate(bulnum = 4, age = 24)
-d5 <- read.csv('data/Bull5Dist.csv') %>% mutate(bulnum = 5, age = 30)
-d6 <- read.csv('data/Bull6Dist.csv') %>% mutate(bulnum = 6, age = 33)
-d7 <- read.csv('data/Bull7Dist.csv') %>% mutate(bulnum = 7, age = 39)
-d8 <- read.csv('data/Bull8Dist.csv') %>% mutate(bulnum = 8, age = 29)
-d9 <- read.csv('data/Bull9Dist.csv') %>% mutate(bulnum = 9, age = 40)
-d10 <- read.csv('data/Bull10Dist.csv') %>% mutate(bulnum = 10, age = 47)
-d12 <- read.csv('data/Bull12Dist.csv') %>% mutate(bulnum = 12, age = 34)
-d13 <- read.csv('data/Bull13Dist.csv') %>% mutate(bulnum = 13, age = 37)
-d14 <- read.csv('data/Bull14Dist.csv') %>% mutate(bulnum = 14, age = 39)
-d15 <- read.csv('data/Bull15Dist.csv') %>% mutate(bulnum = 15, age = 34)
+d1 <- read.csv('data/Bull1Dist.csv') %>% mutate(bulnum = 1, age = 22) %>% mutate(julday = yday(as.Date(Date)))
+d2 <- read.csv('data/Bull2Dist.csv') %>% mutate(bulnum = 2, age = 34) %>% mutate(julday = yday(as.Date(Date)))
+d3 <- read.csv('data/Bull3Dist.csv') %>% mutate(bulnum = 3, age = 29) %>% mutate(julday = yday(as.Date(Date)))
+d4 <- read.csv('data/Bull4Dist.csv') %>% mutate(bulnum = 4, age = 24) %>% mutate(julday = yday(as.Date(Date)))
+d5 <- read.csv('data/Bull5Dist.csv') %>% mutate(bulnum = 5, age = 30) %>% mutate(julday = yday(as.Date(Date)))
+d6 <- read.csv('data/Bull6Dist.csv') %>% mutate(bulnum = 6, age = 33) %>% mutate(julday = yday(as.Date(Date)))
+d7 <- read.csv('data/Bull7Dist.csv') %>% mutate(bulnum = 7, age = 39) %>% mutate(julday = yday(as.Date(Date)))
+d8 <- read.csv('data/Bull8Dist.csv') %>% mutate(bulnum = 8, age = 29) %>% mutate(julday = yday(as.Date(Date)))
+d9 <- read.csv('data/Bull9Dist.csv') %>% mutate(bulnum = 9, age = 40) %>% mutate(julday = yday(as.Date(Date)))
+d10 <- read.csv('data/Bull10Dist.csv') %>% mutate(bulnum = 10, age = 47) %>% mutate(julday = yday(as.Date(Date)))
+d12 <- read.csv('data/Bull12Dist.csv') %>% mutate(bulnum = 12, age = 34) %>% mutate(julday = yday(as.Date(Date)))
+d13 <- read.csv('data/Bull13Dist.csv') %>% mutate(bulnum = 13, age = 37) %>% mutate(julday = yday(as.Date(Date)))
+d14 <- read.csv('data/Bull14Dist.csv') %>% mutate(bulnum = 14, age = 39) %>% mutate(julday = yday(as.Date(Date)))
+d15 <- read.csv('data/Bull15Dist.csv') %>% mutate(bulnum = 15, age = 34) %>% mutate(julday = yday(as.Date(Date)))
 
 # full joining the distance data
 data <- d1[,-1] %>% full_join(d2[,-1]) %>% full_join(d3[,-1]) %>% full_join(d4[,-1]) %>% full_join(d5[,-1]) %>% full_join(d6[,-1]) %>% full_join(d7[,-1]) %>% full_join(d8[,-1]) %>% full_join(d9[,-1]) %>% 
@@ -154,9 +156,23 @@ for(i in 2:nrow(data)) {
 }
 
 
-#fitting a linear model:
-elephantmodel = lm(data$inCityTmrw ~ data$age, data$inCity, data$Distance_to_Zambezi_River, data$Distance_to_Victoria_Falls, data$numBullsNear, data = data)
-#still need to handle the missing values
+# Creating a linear model
+model <- na.omit(data[,16:24])
 
+training.samples <- model$inCityTmrw %>%
+  createDataPartition(p = 0.8, list = FALSE)
+train.data  <- model[training.samples, ]
+test.data <- model[-training.samples, ]
+
+#fitting a linear model:
+elephantmodel = lm(inCityTmrw ~ Distance_to_Zambezi_River + Circle + bulnum + age + julday + numBullsNear , data = train.data)
+
+predictions <- predict(elephantmodel,test.data)
+
+# RMSE
+RMSE(predictions, test.data$inCityTmrw)
+
+# R-Square
+R2(predictions, test.data$inCityTmrw)
 
 
