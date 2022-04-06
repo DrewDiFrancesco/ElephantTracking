@@ -1,6 +1,7 @@
 library(tidyverse)
 library(caret)
 library(lubridate)
+library(leaps)
 
 VFZR=read.csv("data/VictoriaFallsCity-ZambeziRiver.csv")
 
@@ -175,7 +176,26 @@ RMSE(predictions, test.data$inCityTmrw)
 # R-Square
 R2(predictions, test.data$inCityTmrw)
 
-#summary of our model
+# summary of our model
 summary(elephantmodel)
 
+
+# GLM
+elephantmodel = glm(inCityTmrw ~ Distance_to_Zambezi_River + Circle  + age + julday + numBullsNear , data = train.data, family = binomial(link='logit'))
+
+step.model <- stepAIC(elephantmodel, direction = "both", 
+                      trace = FALSE)
+
+
+summary(elephantmodel)
+
+
+# Piecewise selection
+models <- regsubsets(inCityTmrw ~ Distance_to_Zambezi_River + Circle  + age + julday + numBullsNear, data = train.data, nvmax = 5,
+                     method = "seqrep")
+summary(models)
+
+
+
+elephantmodel = glm(inCityTmrw ~ Circle + julday, data = train.data, family = binomial(link='logit'))
 
