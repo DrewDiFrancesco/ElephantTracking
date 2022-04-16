@@ -185,6 +185,12 @@ summary(elephantmodel)
 # GLM
 elephantmodel = glm(inCityTmrw ~ Distance_to_Zambezi_River + Circle  + age + julday + numBullsNear , data = train.data, family = binomial(link='logit'))
 
+predictions <- predict(elephantmodel,test.data)
+
+RMSE(predictions,test.data$inCityTmrw)
+
+R2(predictions, test.data$inCityTmrw)
+
 step.model <- stepAIC(elephantmodel, direction = "both", 
                       trace = FALSE)
 
@@ -199,6 +205,7 @@ summary(models)
 
 
 
+# https://www.datacamp.com/community/tutorials/neural-network-models-r
 
 # Neural Net
 nn <- neuralnet(inCityTmrw~Distance_to_Zambezi_River+Circle+age+julday+numBullsNear,data=train.data, hidden=3,act.fct = "logistic",
@@ -207,6 +214,7 @@ plot(nn)
 
 # Assessing accuracy with test data
 test <- test.data[,-9]
+
 p <- compute(nn,test)
 prob <- p$net.result
 pred <- ifelse(prob>0.5, 1, 0)
