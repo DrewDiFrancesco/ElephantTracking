@@ -2,6 +2,8 @@ library(tidyverse)
 library(caret)
 library(lubridate)
 library(leaps)
+library(MASS)
+library(neuralnet)
 
 VFZR=read.csv("data/VictoriaFallsCity-ZambeziRiver.csv")
 
@@ -190,12 +192,33 @@ step.model <- stepAIC(elephantmodel, direction = "both",
 summary(elephantmodel)
 
 
-# Piecewise selection
+# Piece wise selection
 models <- regsubsets(inCityTmrw ~ Distance_to_Zambezi_River + Circle  + age + julday + numBullsNear, data = train.data, nvmax = 5,
                      method = "seqrep")
 summary(models)
 
 
 
-elephantmodel = glm(inCityTmrw ~ Circle + julday, data = train.data, family = binomial(link='logit'))
 
+# Neural Net
+nn <- neuralnet(inCityTmrw~Distance_to_Zambezi_River+Circle+age+julday+numBullsNear,data=train.data, hidden=3,act.fct = "logistic",
+             linear.output = FALSE)
+plot(nn)
+
+# Assessing accuracy with test data
+test <- test.data[,-9]
+p <- compute(nn,test)
+prob <- p$net.result
+pred <- ifelse(prob>0.5, 1, 0)
+
+z <- pred == test.data$inCityTmrw
+acc <- 0
+
+for(i in 1:nrow(z)) {
+  if(z[i] == TRUE) {
+    acc = acc + 1
+  }
+}
+
+# accuracy when used to predict the test data
+acc/nrow(z)
