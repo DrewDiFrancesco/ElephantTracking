@@ -229,3 +229,8 @@ for(i in 1:nrow(z)) {
 
 # accuracy when used to predict the test data
 acc/nrow(z)
+
+
+#using stargazer package to make better visualizations:
+library(stargazer)
+stargazer(elephantmodel, title = "Regression Results") #this creates a latex table
