@@ -196,11 +196,19 @@ step.model <- stepAIC(elephantmodel, direction = "both",
 
 summary(elephantmodel)
 
+# Prediction Accuracy for GLM
+test.data$model_prob <- predict(elephantmodel,test.data,type="response")
+
+test.data <- test.data %>% mutate(model_pred = 1*(model_prob > .5) + 0)
+test.data <- test.data %>% mutate(accuracy = 1*(model_pred == inCityTmrw))
+
+sum(test.data$accuracy)/nrow(test.data)
 
 # Piece wise selection
 models <- regsubsets(inCityTmrw ~ Distance_to_Zambezi_River + Circle  + age + julday + numBullsNear, data = train.data, nvmax = 5,
                      method = "seqrep")
 summary(models)
+
 
 
 
