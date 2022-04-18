@@ -244,7 +244,8 @@ library(stargazer)
 stargazer(elephantmodel, title = "Regression Results") #this creates a latex table
 
 #creating visualizations for residuals of elephantmodel
-
+library(car)
+durbinWatsonTest(elephantmodel)
 
 
 
