@@ -204,6 +204,7 @@ test.data <- test.data %>% mutate(accuracy = 1*(model_pred == inCityTmrw))
 
 sum(test.data$accuracy)/nrow(test.data)
 
+
 # Piece wise selection
 models <- regsubsets(inCityTmrw ~ Distance_to_Zambezi_River + Circle  + age + julday + numBullsNear, data = train.data, nvmax = 5,
                      method = "seqrep")
