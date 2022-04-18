@@ -234,3 +234,12 @@ acc/nrow(z)
 #using stargazer package to make better visualizations:
 library(stargazer)
 stargazer(elephantmodel, title = "Regression Results") #this creates a latex table
+
+#creating visualizations for residuals of elephantmodel
+
+
+
+
+
+
+
