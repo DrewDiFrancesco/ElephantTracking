@@ -32,6 +32,9 @@ data <- d1[,-1] %>% full_join(d2[,-1]) %>% full_join(d3[,-1]) %>% full_join(d4[,
   full_join(d10[,-1]) %>% full_join(d12[,-1]) %>% full_join(d13[,-1]) %>% full_join(d14[,-1]) %>% full_join(d15[,-1]) %>% group_by(bulnum)
 data$inCity <- ifelse(data$Distance_to_Victoria_Falls <= 5, 1, 0) 
 
+# remove leap year data
+data <- data[-which(data[1] == "2020-02-29"),]
+
 # creating number of bulls nearby indicator
 data$numBullsNear <- 0
 for(i in 1:nrow(data)) {
@@ -186,10 +189,6 @@ summary(elephantmodel)
 elephantmodel = glm(inCityTmrw ~ Distance_to_Zambezi_River + Circle  + age + julday + numBullsNear , data = train.data, family = binomial(link='logit'))
 
 predictions <- predict(elephantmodel,test.data)
-
-RMSE(predictions,test.data$inCityTmrw)
-
-R2(predictions, test.data$inCityTmrw)
 
 step.model <- stepAIC(elephantmodel, direction = "both", 
                       trace = FALSE)
