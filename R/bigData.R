@@ -246,10 +246,30 @@ stargazer(elephantmodel, title = "Regression Results") #this creates a latex tab
 #creating visualizations for residuals of elephantmodel
 library(car)
 durbinWatsonTest(elephantmodel)
-stargazer(durbinWatsonTest(elephantmodel))
+#stargazer(durbinWatsonTest(elephantmodel))
 
+tab <- matrix(c(1, 0.6877949, 0.6240133, 0), ncol=4, byrow=TRUE)
+colnames(tab) <- c('Lag','Autocorrelation','D-W Statistic', 'p-value')
+rownames(tab) <- c('rowName1','rowName2','rowName3')
+tab <- as.table(tab)
 
+tab
 
+plot(elephantmodel)
+#binned plot
+library(arm)
+binnedplot(fitted(elephantmodel), 
+           residuals(elephantmodel, type = "response"), 
+           nclass = NULL, 
+           xlab = "Expected Values", 
+           ylab = "Average residual", 
+           main = "Binned residual plot", 
+           cex.pts = 0.8, 
+           col.pts = 1, 
+           col.int = "gray")
+
+residsvector = elephantmodel$residuals
+hist(residsvector)
 
 
 
