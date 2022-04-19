@@ -272,5 +272,12 @@ binnedplot(fitted(elephantmodel),
 residsvector = elephantmodel$residuals
 hist(residsvector)
 
+#attempt this holsem model for our final report
+library(generalhoslem)
+hoslem.test(elephantmodel)
 
+library(ResourceSelection)
+hoslem.test(data$inCity, elephantmodel$y)
+
+elephantmodel$coefficients
 
