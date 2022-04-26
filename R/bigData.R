@@ -161,8 +161,10 @@ for(i in 2:nrow(data)) {
   }  
 }
 
+# write.csv(data,"data/bData.csv")
 
 # Creating a linear model
+
 model <- na.omit(data[,16:24])
 
 training.samples <- model$inCityTmrw %>%
@@ -196,7 +198,7 @@ step.model <- stepAIC(elephantmodel, direction = "both",
 
 summary(elephantmodel)
 
-# Prediction Accuracy for GLM
+  # Prediction Accuracy for GLM
 test.data$model_prob <- predict(elephantmodel,test.data,type="response")
 
 test.data <- test.data %>% mutate(model_pred = 1*(model_prob > .5) + 0)

@@ -11,3 +11,13 @@ bigbull$year <- substr(bigbull$Time, 0, 4)
 ggplot(bigbull, aes(x = BulNum, fill = year)) + geom_histogram(bins = 15, binwidth = .5) + xlab("Bull Number") + 
   ylab("") + ggtitle("Number of Tracking Data Points per Bull") 
 
+
+bd <- read.csv('data/bData.csv') %>% mutate(year = substr(Date,1,4))
+bd <- bd[,-1]
+
+bd <- na.exclude(bd[,16:25]) 
+
+ggplot(bd, aes(x = bulnum, fill = year)) + geom_histogram(bins = 15, binwidth = .5) + xlab("Bull Number") + 
+  ylab("") + ggtitle("Number of Tracking Data Points per Bull") 
+
+
