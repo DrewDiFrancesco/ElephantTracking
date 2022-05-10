@@ -221,7 +221,7 @@ confmatrixlinear = confusionMatrix(test.data$inCityTmrw,test.data$model_pred)
 confmatrixlinear
 
 
-library(stargazer)
+library(stargazer) # not sure how to get a nice chart for this yet
 ConfMat <- as.data.frame.matrix(confmatrixlinear$table)
 stargazer(ConfMat, title = "Table")
 
