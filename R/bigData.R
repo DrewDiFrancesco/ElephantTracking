@@ -211,6 +211,24 @@ sum(test.data$accuracy)/nrow(test.data)
 models <- regsubsets(inCityTmrw ~ Distance_to_Zambezi_River + Circle  + age + julday + numBullsNear, data = train.data, nvmax = 5,
                      method = "seqrep")
 summary(models)
+########################################
+#confusion matrix of elephant model:
+library(caret)
+
+test.data$inCityTmrw = as.factor(test.data$inCityTmrw)
+test.data$model_pred = as.factor(test.data$model_pred)
+confmatrixlinear = confusionMatrix(test.data$inCityTmrw,test.data$model_pred)
+confmatrixlinear
+
+
+library(stargazer)
+ConfMat <- as.data.frame.matrix(confmatrixlinear$table)
+stargazer(ConfMat, title = "Table")
+
+########################################
+
+
+
 
 
 
@@ -222,8 +240,11 @@ nn <- neuralnet(inCityTmrw~Distance_to_Zambezi_River+Circle+age+julday+numBullsN
              linear.output = FALSE)
 plot(nn)
 
+
+
 # Assessing accuracy with test data
 test <- test.data[,-9]
+
 
 p <- compute(nn,test)
 prob <- p$net.result
@@ -238,10 +259,30 @@ for(i in 1:nrow(z)) {
   }
 }
 
+
 # accuracy when used to predict the test data
 acc/nrow(z)
 
 
+
+test.data$inCityTmrw
+
+data$inCityTmrw
+
+###############
+library(caret)
+#confusion matrix for neural net
+predicted <- predict(nn, test, type="response")
+
+#convert defaults from "Yes" and "No" to 1's and 0's
+test$default <- ifelse(test$default=="Yes", 1, 0)
+
+#find optimal cutoff probability to use to maximize accuracy
+optimal <- optimalCutoff(test$default, predicted)[1]
+
+#create confusion matrix
+confusionMatrix(test$default, predicted)
+###################
 #using stargazer package to make better visualizations:
 library(stargazer)
 stargazer(elephantmodel, title = "Regression Results") #this creates a latex table
